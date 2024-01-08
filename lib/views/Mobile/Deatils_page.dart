@@ -374,55 +374,7 @@ class _Details_pageState extends State<Details_page> {
               ],
             ),
             const Gutter(),
-            // const SizedBox(
-            //   width: double.infinity,
-            //   child: Text(
-            //     "Get In Touch",
-            //     textAlign: TextAlign.center,
-            //     style: TextStyle(
-            //         fontSize: 16,
-            //         fontWeight: FontWeight.bold,
-            //         color: AppColors.primaryColor),
-            //   ),
-            // ),
-            // const SizedBox(
-            //   width: double.infinity,
-            //   child: Text(
-            //     "Contact for any query",
-            //     textAlign: TextAlign.center,
-            //     style: TextStyle(
-            //       fontWeight: FontWeight.bold,
-            //       fontSize: 16,
-            //     ),
-            //   ),
-            // ),
-            // GetInTouch(
-            //   fotter: widget.store.s9 ?? "",
-            //   imageAssetPath: imagespath + (widget.store.drWeblogo ?? ""),
-            //   description: widget.store.s29 ?? "",
-            //   phone: widget.store.s10 ?? " ",
-            //   email: widget.store.s12 ?? "",
-            //   address: widget.store.s46 ?? " ",
-            //   linkTitles: const ['Home', 'About', 'Contact', 'Blog', 'Jobs'],
-            //   linkCallbacks: [
-            //     () {},
-            //     () {
-            //       _navigateToFooterLinks(widget.store, "About us");
-            //     },
-            //     () {
-            //       // Handle Link 3 click
-            //     },
-            //     () {
-            //       // Handle Link 3 click
-            //     },
-            //     () {
-            //       // Handle Link 3 click
-            //     },
-            //     () {
-            //       // Handle Link 3 click
-            //     },
-            //   ],
-            // ),
+            
           ],
         ),
       ),

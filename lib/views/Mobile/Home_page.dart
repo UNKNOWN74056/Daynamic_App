@@ -87,10 +87,6 @@ class _HomePageState extends State<HomePage> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          // Implement the logic to refresh data here
-          // await homeviewmodel.storeApi();
-          // await homeviewmodel.itemApi();
-          // await homeviewmodel.blogsApi();
           await homeviewmodel.fetchData();
         },
         child: ChangeNotifierProvider<HomeViewModel>(

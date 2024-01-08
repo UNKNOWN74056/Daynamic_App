@@ -50,7 +50,9 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
                 // ... other list tile items
                 const ListTile(
-                  leading: Icon(Icons.home,),
+                  leading: Icon(
+                    Icons.home,
+                  ),
                   title: Text("Home"),
                 ),
                 const Divider(

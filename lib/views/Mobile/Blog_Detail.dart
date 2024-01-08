@@ -3,12 +3,15 @@ import 'package:api_project/model/Blog_model.dart';
 import 'package:api_project/model/Store_Model.dart';
 import 'package:api_project/provider/All_Deparments.dart';
 import 'package:api_project/utils/Constants.dart';
+import 'package:api_project/utils/RoutName.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gutter/flutter_gutter.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+
+import '../../components/Get_in_Touch.dart';
 
 class Blog_detail extends StatefulWidget {
   final Blogs_data blogList;
@@ -44,6 +47,7 @@ class _Blog_detailState extends State<Blog_detail> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: 150,
@@ -136,6 +140,8 @@ class _Blog_detailState extends State<Blog_detail> {
               ),
             ),
             const Gutter(),
+            //AUDIO SECTION
+
             // Text(
             //   selectedBlog.postAudio ?? "",
             // ),
@@ -205,28 +211,136 @@ class _Blog_detailState extends State<Blog_detail> {
             const Gutter(),
             Row(
               children: [
-                const Text(
-                  "Auther: ",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "Auther: ",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
                 Text(widget.blogList.postAuthor ?? ""),
               ],
             ),
             const Gutter(),
-            Row(
-              children: [
-                const Text("Category: ",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                Text(widget.blogList.postCategory ?? ""),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  const Text("Category: ",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(widget.blogList.postCategory ?? ""),
+                ],
+              ),
             ),
             const Gutter(),
-            const Row(
-              children: [
-                Text("Tags", style: TextStyle(fontWeight: FontWeight.bold)),
-                Text("All / tranding / playstation games")
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text("Tags", style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text("All / tranding / playstation games")
+                ],
+              ),
+            ),
+            const Gutter(),
+            const Text(
+              "Recent Blogs",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const Gutter(),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "09 Kinds Of Vegetables",
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "MAR 05, 2019",
+                style: TextStyle(color: AppColors.grey),
+              ),
+            ),
+            const Gutter(),
+
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "Tips You To Balance",
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "Nutrition Meal Day",
+                style: TextStyle(color: AppColors.grey),
+              ),
+            ),
+            const Gutter(),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "4 Principles Help You Lose ",
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "Weight With Vegetables",
+                style: TextStyle(color: AppColors.grey),
+              ),
+            ),
+            const Gutter(),
+            const SizedBox(
+              width: double.infinity,
+              child: Text(
+                "Get In Touch",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primaryColor),
+              ),
+            ),
+            const SizedBox(
+              width: double.infinity,
+              child: Text(
+                "Contact for any query",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            const Gutter(),
+            GetInTouch(
+              fotter: widget.store.s9 ?? " ",
+              imageAssetPath: imagespath + (widget.store.drWeblogo ?? ""),
+              description: widget.store.s29 ?? "",
+              phone: widget.store.s10 ?? " ",
+              email: widget.store.s12 ?? "",
+              address: widget.store.s46 ?? " ",
+              linkTitles: const ['Home', 'About', 'Contact', 'Blog', 'Jobs'],
+              linkCallbacks: [
+                () {},
+                () {
+                  Navigator.pushNamed(context, Routesname.About_Us);
+                },
+                () {
+                  Navigator.pushNamed(context, Routesname.Contact);
+                },
+                () {
+                  Navigator.pushNamed(context, Routesname.Blogs);
+                },
+                () {
+                  // Handle Link 3 click jobs
+                },
               ],
-            )
+            ),
           ],
         ),
       ),
