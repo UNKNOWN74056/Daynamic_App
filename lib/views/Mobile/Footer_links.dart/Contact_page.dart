@@ -1,0 +1,341 @@
+import 'package:api_project/components/Colors.dart';
+import 'package:api_project/components/Text_Field.dart';
+import 'package:api_project/data/Responces/Status.dart';
+import 'package:api_project/model/Agent_model.dart';
+import 'package:api_project/provider/All_Deparments.dart';
+import 'package:api_project/services/Home_View_model.dart';
+import 'package:api_project/utils/Constants.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gutter/flutter_gutter.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+
+class Contact_page extends StatefulWidget {
+  final text;
+  const Contact_page({super.key, required this.text});
+
+  @override
+  State<Contact_page> createState() => _Blogs_SceenState();
+}
+
+class _Blogs_SceenState extends State<Contact_page> {
+  HomeViewModel homeviewmodel = HomeViewModel();
+  late Future<void> _mapurl;
+
+  @override
+  void initState() {
+    homeviewmodel.fetchData();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final provider = Provider.of<ProviderController>(context, listen: false);
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.text),
+        ),
+        body: ChangeNotifierProvider<HomeViewModel>(
+            create: (BuildContext context) => homeviewmodel,
+            child: Consumer<HomeViewModel>(builder: (context, value, child) {
+              if (value.storelist.status == Status.LOADING) {
+                return const Center(
+                  child: SpinKitThreeBounce(
+                    color: AppColors
+                        .primaryColor, // You can set the color to match your theme
+                    size: 50.0, // Adjust the size as needed
+                  ),
+                );
+              } else if (value.storelist.status == Status.ERROR) {
+                return const Center(
+                  child: Text("error loading data"),
+                );
+              } else if (value.storelist.status == Status.COMPLETED) {
+                final store = value.storelist.data!;
+                _mapurl = provider.extractMapUrl(store.s45 ?? "");
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 150,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              provider.getColorFromName(store.s66 ?? ""),
+                              Colors.black,
+                            ],
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.05),
+                              spreadRadius: 1,
+                              blurRadius: 4,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            widget.text,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Gutter(),
+
+                      //TODO SHOWING MAP
+
+                      FutureBuilder<void>(
+                        future: _mapurl,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            return Consumer<ProviderController>(
+                              builder: (context, provider, child) {
+                                if (provider.mapUrl != null &&
+                                    provider.mapUrl!.isNotEmpty) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      height: 300,
+                                      color: AppColors.white,
+                                      width: 450,
+                                      child: InAppWebView(
+                                        initialData: InAppWebViewInitialData(
+                                          data: '''
+                        <html>
+                          <body>
+                            <iframe width="100%" height="100%" src="${provider.mapUrl}" frameborder="0" allowfullscreen></iframe>
+                          </body>
+                        </html>
+                      ''',
+                                          mimeType: 'text/html',
+                                        ),
+                                        initialOptions:
+                                            InAppWebViewGroupOptions(
+                                          crossPlatform: InAppWebViewOptions(
+                                            verticalScrollBarEnabled: true,
+                                            horizontalScrollBarEnabled: true,
+                                            supportZoom: true,
+                                            useShouldOverrideUrlLoading: true,
+                                            mediaPlaybackRequiresUserGesture:
+                                                false,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  return const Text('Map URL not available');
+                                }
+                              },
+                            );
+                          } else if (snapshot.hasError) {
+                            // Handle the case where an error occurred
+                            print('Error: ${snapshot.error}');
+                            return const Text('Error loading map');
+                          } else {
+                            return const CircularProgressIndicator();
+                          }
+                        },
+                      ),
+
+                      const Gutter(),
+
+                      Icon(
+                        FontAwesomeIcons.phone,
+                        color: provider.getColorFromName(store.s66 ?? ""),
+                      ),
+                      const Gutter(),
+                      const Text(
+                        "Phone",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      const Gutter(),
+                      Text(
+                        store.s47 ?? "",
+                        style: const TextStyle(fontSize: 15),
+                      ),
+                      const Gutter(),
+                      Icon(
+                        FontAwesomeIcons.locationDot,
+                        color: provider.getColorFromName(store.s66 ?? ""),
+                      ),
+                      const Gutter(),
+                      const Text("Adress",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
+                      const Gutter(),
+                      Text(
+                        store.drWebcontactaddress ?? " ",
+                        textAlign: TextAlign.center,
+                      ),
+                      const Gutter(),
+                      Icon(
+                        FontAwesomeIcons.envelope,
+                        color: provider.getColorFromName(store.s66 ?? ""),
+                      ),
+                      const Gutter(),
+                      const Text(
+                        "Email",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      const Gutter(),
+                      Text(store.s48 ?? ""),
+
+                      const Gutter(),
+
+                      SizedBox(
+                        height: 350,
+                        width: double.infinity,
+                        child: ChangeNotifierProvider<HomeViewModel>(
+                          create: (BuildContext context) => homeviewmodel,
+                          child: Consumer<HomeViewModel>(
+                            builder: (context, value, child) {
+                              final List<Agents_data> agentList =
+                                  value.agentList.data ?? [];
+                              final List<int> shuffledIndices = List.generate(
+                                  agentList.length, (index) => index)
+                                ..shuffle();
+
+                              return PageView.builder(
+                                itemCount: shuffledIndices.isNotEmpty ? 1 : 0,
+                                itemBuilder:
+                                    (BuildContext context, int pageIndex) {
+                                  if (shuffledIndices.isNotEmpty) {
+                                    final int index =
+                                        shuffledIndices[pageIndex];
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Center(
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 150,
+                                              width: 150,
+                                              child: Image.network(imagespath +
+                                                  (agentList[index]
+                                                          .agentPhoto1 ??
+                                                      "")),
+                                            ),
+                                            const Gutter(),
+                                            Text(
+                                              "Contact Our Agent# ${agentList[index].agentName ?? ""}",
+                                              style: const TextStyle(
+                                                  fontSize: 15,
+                                                  color: AppColors.purple),
+                                            ),
+                                            const Center(
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: 65, right: 40),
+                                                child: Text(
+                                                  "Contact me for any kind of gaming details you want!",
+                                                  style:
+                                                      TextStyle(fontSize: 12),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                            ),
+                                            const Gutter(),
+                                            ElevatedButton.icon(
+                                              style: ElevatedButton.styleFrom(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(0),
+                                                ),
+                                                backgroundColor:
+                                                    AppColors.accentColor,
+                                                foregroundColor:
+                                                    AppColors.white,
+                                              ),
+                                              label: const Text("WhatsApp"),
+                                              icon: const Icon(
+                                                  FontAwesomeIcons.whatsapp),
+                                              onPressed: () async {
+                                                await provider
+                                                    .launchwhatsappURL();
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  } else {
+                                    return const Center(
+                                        child: Text("No agents available"));
+                                  }
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                      const Gutter(),
+
+                      const Text(
+                        "Leave A Message",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      const Gutter(),
+                      const Text_Field(
+                        labeltext: "Your Name",
+                        hinttext: "Enter your name",
+                      ),
+                      const Gutter(),
+                      const Text_Field(
+                          labeltext: "Your email", hinttext: "enter you email"),
+                      const Gutter(),
+                      const Text_Field(
+                          labeltext: "Enter your message",
+                          hinttext: "enter your message"),
+                      const Gutter(),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Add your payment processing logic here
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.accentColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            "Send Message",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: AppColors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Gutter()
+                    ],
+                  ),
+                );
+              }
+              return const Center(
+                child: SpinKitDoubleBounce(
+                  color: AppColors
+                      .accentColor, // You can set the color to match your theme
+                  size: 50.0, // Adjust the size as needed
+                ),
+              );
+            })));
+  }
+}
