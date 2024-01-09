@@ -55,9 +55,9 @@ dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/amjeeicon.png"
+  image_path: "assets/gamezoneicon.png"
   adaptive_icon_forground: "#ffffff"
-  adaptive_icon_background: "assets/amjeeicon.png"
+  adaptive_icon_background: "assets/gamezoneicon.png"
 
 dev_dependencies:
   flutter_test:

@@ -7,6 +7,7 @@ import 'package:api_project/provider/All_Deparments.dart';
 import 'package:api_project/provider/Validation_provider.dart';
 import 'package:api_project/services/Home_View_model.dart';
 import 'package:api_project/utils/Constants.dart';
+import 'package:api_project/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gutter/flutter_gutter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,17 +23,19 @@ class Payment_page extends StatefulWidget {
 
 class _Payment_pageState extends State<Payment_page> {
   HomeViewModel homeviewmodel = HomeViewModel();
-  @override
-  void initState() {
-    super.initState();
-  //  homeviewmodel.agentApi();
-  }
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ProviderController>(context, listen: false);
     final validateprovider =
         Provider.of<ValidationProvider>(context, listen: false);
+    final provider = Provider.of<ProviderController>(context, listen: false);
+    @override
+    void initState() {
+      super.initState();
+      homeviewmodel.fetchData();
+      validateprovider.disposeControllers();
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Payment"),
@@ -250,8 +253,23 @@ class _Payment_pageState extends State<Payment_page> {
                         FontAwesomeIcons.whatsapp,
                       ),
                       onPressed: () async {
+                        if (!validateprovider.isFormValid) {
+                          utils.Show_Flushbar_Error_Message(
+                              "Please enter your field", context);
+                        } else {
+                          String name = validateprovider.namecontorller.text;
+                          String address =
+                              validateprovider.adresscontorller.text;
+                          String whatsapp =
+                              validateprovider.whatappcontroller.text;
+                          String email = validateprovider.emailcontroller.text;
 
-                        await provider.launchwhatsappURL();
+                          String defaultWhatsAppMessage =
+                              "Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email";
+
+                          await provider.whatapplunch(
+                              message: defaultWhatsAppMessage);
+                        }
                       },
                     ),
                     const Gutter(),
@@ -331,7 +349,7 @@ class _Payment_pageState extends State<Payment_page> {
                             );
                           } else {
                             return const Center(
-                                child: Text("No agents available"));
+                                child: Text("Sorry! No agents available"));
                           }
                         },
                       );

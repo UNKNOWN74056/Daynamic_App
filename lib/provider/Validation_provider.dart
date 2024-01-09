@@ -20,6 +20,14 @@ class ValidationProvider extends ChangeNotifier {
 
   final emailcontroller = TextEditingController();
 
+  //dispsoe the controller
+  void disposeControllers() {
+    emailcontroller.dispose();
+    adresscontorller.dispose();
+    whatappcontroller.dispose();
+    namecontorller.dispose();
+  }
+
   // Name validation function
   void validateName(String value) {
     if (value.isEmpty) {
@@ -69,10 +77,14 @@ class ValidationProvider extends ChangeNotifier {
     return emailRegExp.hasMatch(email);
   }
 
-  bool isFormValid() {
-    return _name.Value == null &&
-        _address.Value == null &&
-        _whatsapp.Value == null &&
-        _email.Value == null;
+  bool get isFormValid {
+    if (_name.Value != null &&
+        _address.Value != null &&
+        _whatsapp.Value != null &&
+        _email.Value != null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

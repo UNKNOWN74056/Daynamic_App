@@ -148,4 +148,19 @@ class ProviderController extends ChangeNotifier {
       utils.showToastMessage("Could not load the page!");
     }
   }
+
+  Future<void> whatapplunch({required String message}) async {
+    // Replace with your WhatsApp number and encode the message
+    final String encodedMessage = Uri.encodeComponent(message);
+    final String whatsappURL =
+        'https://api.whatsapp.com/send/?phone=%2B923339688283&text=$encodedMessage&type=phone_number&app_absent=0';
+
+    final Uri whatsappUri = Uri.parse(whatsappURL);
+
+    if (await canLaunchUrl(whatsappUri)) {
+      await launchUrl(whatsappUri);
+    } else {
+      utils.showToastMessage("Could not load the page!");
+    }
+  }
 }
