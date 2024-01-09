@@ -265,7 +265,7 @@ class _Payment_pageState extends State<Payment_page> {
                           String email = validateprovider.emailcontroller.text;
 
                           String defaultWhatsAppMessage =
-                              "Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email";
+                              "Can i get more details about this product. Name :  ${widget.item.itemName ?? ""} price: ${widget.item.itemPrice}Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email";
 
                           await provider.whatapplunch(
                               message: defaultWhatsAppMessage);
