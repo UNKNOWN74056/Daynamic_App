@@ -3,6 +3,7 @@ import 'package:api_project/model/Ads_model.dart';
 import 'package:api_project/model/Agent_model.dart';
 import 'package:api_project/model/Blog_model.dart';
 import 'package:api_project/model/Items_model.dart';
+import 'package:api_project/model/Jobs_model.dart';
 import 'package:api_project/model/Store_Model.dart';
 import 'package:api_project/repositry/Store_repositry.dart';
 import 'package:flutter/material.dart';
@@ -49,14 +50,21 @@ class HomeViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-Future<void> fetchData() async {
+  //JOBS LIST API
+
+  ApiResponse<List<jobs_data>> joblist = ApiResponse.loading();
+  setjobList(ApiResponse<List<jobs_data>> response) {
+    joblist = response;
+    notifyListeners();
+  }
+
+  Future<void> fetchData() async {
     setStoreList(ApiResponse.loading());
     setItemList(ApiResponse.loading());
     setBlogList(ApiResponse.loading());
     setAdsList(ApiResponse.loading());
     setAgentList(ApiResponse.loading());
-    // setJobList(ApiResponse.loading());
-    
+    setjobList(ApiResponse.loading());
 
     try {
       Map<String, dynamic> data = await _myRepo.fetchData();
@@ -65,14 +73,14 @@ Future<void> fetchData() async {
       setBlogList(ApiResponse.completed(data['blogs']));
       setAdsList(ApiResponse.completed(data['ads']));
       setAgentList(ApiResponse.completed(data['agent']));
-      // setJobList(ApiResponse.completed(data['jobs']));
+      setjobList(ApiResponse.completed(data['jobs']));
     } catch (e) {
       setStoreList(ApiResponse.error(e.toString()));
       setItemList(ApiResponse.error(e.toString()));
       setBlogList(ApiResponse.error(e.toString()));
       setAdsList(ApiResponse.error(e.toString()));
       setAgentList(ApiResponse.error(e.toString()));
-}
-}
-
+      setjobList(ApiResponse.error(e.toString()));
+    }
+  }
 }

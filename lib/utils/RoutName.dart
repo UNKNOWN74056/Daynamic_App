@@ -13,4 +13,6 @@ class Routesname {
   static const Blogs = 'Blogs_page';
   static const About_Us = 'About_Us';
   static const Contact = 'Contact';
+  static const Job = 'Jobs';
+  static const offer = 'offer';
 }

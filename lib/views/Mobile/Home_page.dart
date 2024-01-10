@@ -675,7 +675,8 @@ class _HomePageState extends State<HomePage> {
                     'About',
                     'Contact',
                     'Blog',
-                    'Jobs'
+                    'Jobs',
+                    'Offers'
                   ],
                   linkCallbacks: [
                     () {},
@@ -689,8 +690,11 @@ class _HomePageState extends State<HomePage> {
                       Navigator.pushNamed(context, Routesname.Blogs);
                     },
                     () {
-                      // Handle Link 3 click jobs
+                      Navigator.pushNamed(context, Routesname.Job);
                     },
+                    () {
+                        Navigator.pushNamed(context, Routesname.offer);
+                    }
                   ],
                 ),
                 const Gutter(),

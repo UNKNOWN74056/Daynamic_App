@@ -7,4 +7,5 @@ class AppUrl {
   static var blogsEndpoint = "${storebaseUrl}json?blog";
   static var agentsEndpoint = "${storebaseUrl}json?agents";
   static var adsEndpoint = "${storebaseUrl}json?ads";
+  static var jobsEndpoint = "${storebaseUrl}json?jobs";
 }

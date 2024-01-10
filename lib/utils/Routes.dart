@@ -1,9 +1,11 @@
+import 'package:api_project/components/Offer_widget.dart';
 import 'package:api_project/utils/Responsive_layout.dart';
 import 'package:api_project/utils/RoutName.dart';
 import 'package:api_project/views/Mobile/Footer_links.dart/About_page.dart';
 import 'package:api_project/views/Mobile/Footer_links.dart/Blogs_page.dart';
 import 'package:api_project/views/Mobile/Footer_links.dart/Contact_page.dart';
 import 'package:api_project/views/Mobile/Home_page.dart';
+import 'package:api_project/views/Mobile/jobs.dart';
 import 'package:api_project/views/Splash_Screen.dart';
 import 'package:api_project/views/Tablet/Home_page.dart';
 import 'package:api_project/views/desktop/Home_page.dart';
@@ -26,7 +28,12 @@ class Routes {
         return MaterialPageRoute(
             builder: (BuildContext context) =>
                 const About_Us_page(text: "About Us"));
-
+      case Routesname.Job:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const Jobs_page(text: "Job"));
+      case Routesname.offer:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const Offer_widget());
       case Routesname.Contact:
         return MaterialPageRoute(
             builder: (BuildContext context) =>

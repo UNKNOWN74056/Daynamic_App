@@ -324,7 +324,14 @@ class _Blog_detailState extends State<Blog_detail> {
               phone: widget.store.s10 ?? " ",
               email: widget.store.s12 ?? "",
               address: widget.store.s46 ?? " ",
-              linkTitles: const ['Home', 'About', 'Contact', 'Blog', 'Jobs'],
+              linkTitles: const [
+                'Home',
+                'About',
+                'Contact',
+                'Blog',
+                'Jobs',
+                "Offers"
+              ],
               linkCallbacks: [
                 () {},
                 () {
@@ -337,8 +344,11 @@ class _Blog_detailState extends State<Blog_detail> {
                   Navigator.pushNamed(context, Routesname.Blogs);
                 },
                 () {
-                  // Handle Link 3 click jobs
+                  Navigator.pushNamed(context, Routesname.Job);
                 },
+                () {
+                  Navigator.pushNamed(context, Routesname.offer);
+                }
               ],
             ),
           ],

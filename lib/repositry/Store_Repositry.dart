@@ -5,6 +5,7 @@ import 'package:api_project/model/Ads_model.dart';
 import 'package:api_project/model/Agent_model.dart';
 import 'package:api_project/model/Blog_model.dart';
 import 'package:api_project/model/Items_model.dart';
+import 'package:api_project/model/Jobs_model.dart';
 import 'package:api_project/model/Store_Model.dart';
 
 class Home_Repository {
@@ -72,6 +73,20 @@ class Home_Repository {
     }
   }
 
+  //JOBS _DATA
+  Future<List<jobs_data>> jobsApi() async {
+    try {
+      dynamic response =
+          await _apiServices.getGetApiResponse(AppUrl.jobsEndpoint);
+      List<jobs_data> jobsList = List<jobs_data>.from(
+          (response as List).map((jobs) => jobs_data.fromJson(jobs)));
+      return jobsList;
+    } catch (e) {
+      rethrow;
+    }
+  }
+  
+
   Future<Map<String, dynamic>> fetchData() async {
     try {
       Stores stores = await storeApi();
@@ -79,6 +94,8 @@ class Home_Repository {
       List<Blogs_data> blogs = await blogsApi();
       List<Ads_data> ads = await adsApi();
       List<Agents_data> agent = await agentApi();
+      List<jobs_data> jobs = await jobsApi();
+
 
       return {
         'stores': stores,
@@ -86,6 +103,7 @@ class Home_Repository {
         'blogs': blogs,
         'ads': ads,
         'agent': agent,
+        'jobs' : jobs,
       };
     } catch (e) {
       rethrow;
