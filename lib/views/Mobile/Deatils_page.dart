@@ -1,10 +1,8 @@
 import 'package:api_project/components/Colors.dart';
-//import 'package:api_project/components/Get_in_Touch.dart';
 import 'package:api_project/model/Items_model.dart';
 import 'package:api_project/model/Store_Model.dart';
 import 'package:api_project/provider/All_Deparments.dart';
 import 'package:api_project/utils/Constants.dart';
-//import 'package:api_project/views/Mobile/Footer_links.dart/About_Us.dart';
 import 'package:api_project/views/Mobile/Payment_page.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -354,7 +352,9 @@ class _Details_pageState extends State<Details_page> {
             Row(
               children: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      provider.launchFacebookURL();
+                    },
                     icon: const Icon(
                       FontAwesomeIcons.facebook,
                       color: AppColors.darkblue,
@@ -366,7 +366,9 @@ class _Details_pageState extends State<Details_page> {
                       color: Colors.blue,
                     )),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      provider.launchinstagramURL();
+                    },
                     icon: const Icon(
                       FontAwesomeIcons.instagram,
                       color: AppColors.red,
@@ -374,7 +376,6 @@ class _Details_pageState extends State<Details_page> {
               ],
             ),
             const Gutter(),
-            
           ],
         ),
       ),

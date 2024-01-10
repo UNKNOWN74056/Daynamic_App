@@ -26,7 +26,7 @@ class _ContactState extends State<Contact> {
   @override
   void initState() {
     super.initState();
-    //homeviewmodel.agentApi();
+    homeviewmodel.fetchData();
     final provider = Provider.of<ProviderController>(context, listen: false);
     _mapurl = provider.extractMapUrl(widget.store.s45 ?? "");
   }

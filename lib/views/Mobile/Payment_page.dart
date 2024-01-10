@@ -23,18 +23,17 @@ class Payment_page extends StatefulWidget {
 
 class _Payment_pageState extends State<Payment_page> {
   HomeViewModel homeviewmodel = HomeViewModel();
+  @override
+  void initState() {
+    super.initState();
+    homeviewmodel.fetchData();
+  }
 
   @override
   Widget build(BuildContext context) {
     final validateprovider =
         Provider.of<ValidationProvider>(context, listen: false);
     final provider = Provider.of<ProviderController>(context, listen: false);
-    @override
-    void initState() {
-      super.initState();
-      homeviewmodel.fetchData();
-      validateprovider.disposeControllers();
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -160,16 +159,10 @@ class _Payment_pageState extends State<Payment_page> {
                     Paymentwidget(
                       itemPrice: widget.item.itemPrice ?? "",
                     ),
-                    const Gutter(),
 
                     //SHOW TOTAL PRICE
                     const Row(
                       children: [
-                        Text(
-                          "Total Amout : ",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
-                        ),
                         // Consumer<>(
                         //   builder: (context, value, child) {
                         //     int quantity = value.quantity;
