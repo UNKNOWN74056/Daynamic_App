@@ -8,6 +8,8 @@ class User_view_Model extends ChangeNotifier {
   static const String emailKey = 'email';
   static const String storeLogoKey = 'storeLogo';
   static const String storetitleKey = 'storetitle';
+  static const String addresstitleKey = 'addresstitle';
+  static const String fottertitleKey = 'fottertitle';
 
   Future<bool> saveUser(UserToken user) async {
     try {
@@ -26,7 +28,15 @@ class User_view_Model extends ChangeNotifier {
       final SharedPreferences sp = await SharedPreferences.getInstance();
       final String? storeLogo = sp.getString(storeLogoKey);
       final String? storetitle = sp.getString(storetitleKey);
-      return UserToken(storeLogo: storeLogo.toString(), storetitle: storetitle);
+      final String? storeaddress = sp.getString(addresstitleKey);
+      final String? storefotter = sp.getString(fottertitleKey);
+
+      return UserToken(
+        storeLogo: storeLogo.toString(),
+        storetitle: storetitle,
+        address: storeaddress,
+        fotter: storefotter,
+      );
     } catch (e) {
       print('Error getting user: $e');
       return null;
@@ -51,11 +61,18 @@ class User_view_Model extends ChangeNotifier {
       String? storetitlepath = store.s30;
       String? storeLogoPath =
           store.drWeblogo; // Replace with the correct property name
+      String? storeaddress = store.s46;
+      String? storefotter = store.s9;
 
-      // Check if the storeLogoPath is null or empty
-      if (storeLogoPath == null || storeLogoPath.isEmpty) {
-        // Handle the case where the logo path is null or empty
-        print('Error: Store logo path is null or empty');
+      // Check if the storeLogoPath or storeaddress is null or empty
+      if (storeLogoPath == null ||
+          storeLogoPath.isEmpty ||
+          storeaddress == null ||
+          storeaddress.isEmpty ||
+          storefotter == null ||
+          storefotter.isEmpty) {
+        // Handle the case where the logo path or address is null or empty
+        print('Error: Store logo path or address is null or empty');
         return false;
       }
 
@@ -64,6 +81,8 @@ class User_view_Model extends ChangeNotifier {
       await sp.setString(storetitleKey, "$storetitlepath");
       await sp.setString(
           storeLogoKey, 'https://wakafridi.com/photos/$storeLogoPath');
+      await sp.setString(addresstitleKey, storeaddress); // Save store address
+      await sp.setString(fottertitleKey, storefotter);
       notifyListeners();
       return true;
     } catch (e) {

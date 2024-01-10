@@ -31,6 +31,9 @@ class _MyDrawerState extends State<MyDrawer> {
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
           String? storeLogo = snapshot.data!.storeLogo;
+          String? storeAddress = snapshot.data!.address;
+          String? storefotter = snapshot.data!.fotter;
+
           return Drawer(
             child: ListView(
               children: [
@@ -196,7 +199,28 @@ class _MyDrawerState extends State<MyDrawer> {
                         color: AppColors.accentColor,
                         ontap: () {})
                   ],
-                )
+                ),
+                const Gutter(),
+
+                Text(
+                  storeAddress ?? "",
+                  textAlign: TextAlign.center,
+                ),
+                const Gutter(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Copyright©2023 ",
+                      style: TextStyle(fontSize: 10),
+                    ),
+                    Text(storefotter ?? "",
+                        style: const TextStyle(fontSize: 10)),
+                  ],
+                ),
+                const Center(
+                    child: Text(" All rights reserved",
+                        style: TextStyle(fontSize: 10))),
               ],
             ),
           );
