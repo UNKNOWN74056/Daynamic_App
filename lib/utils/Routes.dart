@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 class Routes {
   static Route<dynamic> generateRoutes(
     RouteSettings settings,
+    String? storeTitle, // Add storeTitle parameter
   ) {
     switch (settings.name) {
       case Routesname.spalsh_screen:
@@ -40,10 +41,10 @@ class Routes {
                 const Contact_page(text: "Contact"));
       case Routesname.Resposive_layout:
         return MaterialPageRoute(
-            builder: (BuildContext context) => const Resposive_layout(
-                MobileApp: HomePage(),
-                DesktopApp: Tablet_home_page(),
-                TabletApp: Desktop_home_page()));
+            builder: (BuildContext context) => Resposive_layout(
+                MobileApp: HomePage(storeTitle: storeTitle),
+                DesktopApp: const Tablet_home_page(),
+                TabletApp: const Desktop_home_page()));
       default:
         return MaterialPageRoute(builder: (_) {
           return const Scaffold(

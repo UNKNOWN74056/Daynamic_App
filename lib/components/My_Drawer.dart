@@ -33,6 +33,7 @@ class _MyDrawerState extends State<MyDrawer> {
           String? storeLogo = snapshot.data!.storeLogo;
           String? storeAddress = snapshot.data!.address;
           String? storefotter = snapshot.data!.fotter;
+          // String? storetitle = snapshot.data!.storetitle;
 
           return Drawer(
             child: ListView(
@@ -41,17 +42,16 @@ class _MyDrawerState extends State<MyDrawer> {
                     child: CachedNetworkImage(
                   imageUrl: storeLogo ?? " ",
                 )),
-                // const ListTile(
-                //   leading: Icon(Icons.person),
-                //   title: Text("Login"),
-                // ),
+                const ListTile(
+                  leading: Icon(Icons.person),
+                  title: Text("Login"),
+                ),
                 const Divider(
                   thickness: 0.1,
                   color: AppColors.textColor,
                   indent: 20,
                   endIndent: 20,
                 ),
-                // ... other list tile items
                 const ListTile(
                   leading: Icon(
                     Icons.home,
@@ -140,7 +140,6 @@ class _MyDrawerState extends State<MyDrawer> {
                   endIndent: 20,
                 ),
                 const Gutter(),
-
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: Row(
@@ -211,7 +210,6 @@ class _MyDrawerState extends State<MyDrawer> {
                   ],
                 ),
                 const Gutter(),
-
                 Text(
                   storeAddress ?? "",
                   textAlign: TextAlign.center,
@@ -231,6 +229,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 const Center(
                     child: Text(" All rights reserved",
                         style: TextStyle(fontSize: 10))),
+                const Gutter()
               ],
             ),
           );

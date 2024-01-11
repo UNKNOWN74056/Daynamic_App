@@ -28,7 +28,11 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final String? storeTitle;
+  const HomePage({
+    super.key,
+    required this.storeTitle,
+  });
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -39,35 +43,22 @@ class _HomePageState extends State<HomePage> {
   final ScrollController _scrollController = ScrollController();
   HomeViewModel homeviewmodel = HomeViewModel();
 
-  String appbartitle = "";
   @override
   void initState() {
     super.initState();
     _swiperController = SwiperController();
     homeviewmodel.fetchData();
-    loadTitleFromSharedPreferences();
-  }
-
-  Future<void> loadTitleFromSharedPreferences() async {
-    final userViewModel = context.read<User_view_Model>();
-    final user = await userViewModel.getUser();
-
-    if (user != null) {
-      setState(() {
-        appbartitle = user.storetitle!; // Assuming storeLogo contains the title
-      });
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(appbartitle),
+        title: const Text("Game zone"),
         actions: const [
           Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(FontAwesomeIcons.magnifyingGlass),
+            padding: EdgeInsets.only(right: 10),
+            child: Icon(Icons.search),
           )
         ],
       ),

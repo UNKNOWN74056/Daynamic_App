@@ -1,3 +1,4 @@
+import 'package:api_project/services/Home_View_model.dart';
 import 'package:api_project/views/Splash_Service.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,8 @@ class Splash_Screen extends StatefulWidget {
 
 class _Splash_ScreenState extends State<Splash_Screen> {
   SplashServices splashservice = SplashServices();
+  HomeViewModel homeviewmodel = HomeViewModel();
+
   @override
   void initState() {
     super.initState();
