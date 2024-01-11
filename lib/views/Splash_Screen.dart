@@ -26,8 +26,8 @@ class _Splash_ScreenState extends State<Splash_Screen> {
             Expanded(
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: const Center(
-                    child: Text("Splash Screen"),
+                  child: Center(
+                    child: Image.asset("assets/gamezoneicon.png"),
                   )),
             ),
           ],

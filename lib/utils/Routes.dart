@@ -1,9 +1,9 @@
-import 'package:api_project/components/Offer_widget.dart';
 import 'package:api_project/utils/Responsive_layout.dart';
 import 'package:api_project/utils/RoutName.dart';
 import 'package:api_project/views/Mobile/Footer_links.dart/About_page.dart';
 import 'package:api_project/views/Mobile/Footer_links.dart/Blogs_page.dart';
 import 'package:api_project/views/Mobile/Footer_links.dart/Contact_page.dart';
+import 'package:api_project/views/Mobile/Footer_links.dart/Offers.dart';
 import 'package:api_project/views/Mobile/Home_page.dart';
 import 'package:api_project/views/Mobile/jobs.dart';
 import 'package:api_project/views/Splash_Screen.dart';

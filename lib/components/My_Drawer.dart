@@ -109,9 +109,14 @@ class _MyDrawerState extends State<MyDrawer> {
                   indent: 20,
                   endIndent: 20,
                 ),
-                const ListTile(
-                  leading: Icon(Icons.find_in_page),
-                  title: Text("Jobs"),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, Routesname.Job);
+                  },
+                  child: const ListTile(
+                    leading: Icon(Icons.find_in_page),
+                    title: Text("Jobs"),
+                  ),
                 ),
                 const Divider(
                   thickness: 0.1,
@@ -119,9 +124,14 @@ class _MyDrawerState extends State<MyDrawer> {
                   indent: 20,
                   endIndent: 20,
                 ),
-                const ListTile(
-                  leading: Icon(FontAwesomeIcons.envelope),
-                  title: Text("Offers"),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, Routesname.offer);
+                  },
+                  child: const ListTile(
+                    leading: Icon(FontAwesomeIcons.envelope),
+                    title: Text("Offers"),
+                  ),
                 ),
                 const Divider(
                   thickness: 0.1,

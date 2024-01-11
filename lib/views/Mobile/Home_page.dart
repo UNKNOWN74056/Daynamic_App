@@ -608,7 +608,7 @@ class _HomePageState extends State<HomePage> {
 
                 Container(
                   color: AppColors.white,
-                  height: 300,
+                  height: 330,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: blogList.length,
@@ -693,7 +693,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.pushNamed(context, Routesname.Job);
                     },
                     () {
-                        Navigator.pushNamed(context, Routesname.offer);
+                      Navigator.pushNamed(context, Routesname.offer);
                     }
                   ],
                 ),

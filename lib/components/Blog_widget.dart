@@ -19,47 +19,68 @@ class Blog_widget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          height: 200,
-          width: MediaQuery.of(context).size.width > 600 ? 400 : 350,
-          color: AppColors.grey,
-          child: CachedNetworkImage(
-            imageUrl: imagepath,
-            fit: BoxFit.cover,
-          ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(12.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
+            ),
+          ],
         ),
-        const Gutter(),
-        Padding(
-          padding: const EdgeInsets.only(left: 5),
-          child: Row(
-            children: [
-              const Icon(
-                FontAwesomeIcons.calendar,
-                size: 20,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 200,
+                width: MediaQuery.of(context).size.width > 600 ? 400 : 350,
+                // color: AppColors.grey,
+                child: CachedNetworkImage(
+                  imageUrl: imagepath,
+                  fit: BoxFit.cover,
+                ),
               ),
-              Text(time),
-              const Gutter(),
-              const Icon(
-                FontAwesomeIcons.message,
-                size: 20,
+            ),
+            const Gutter(),
+            Padding(
+              padding: const EdgeInsets.only(left: 5),
+              child: Row(
+                children: [
+                  const Icon(
+                    FontAwesomeIcons.calendar,
+                    size: 20,
+                  ),
+                  Text(time),
+                  const Gutter(),
+                  const Icon(
+                    FontAwesomeIcons.message,
+                    size: 20,
+                  ),
+                  Text(chat),
+                ],
               ),
-              Text(chat),
-            ],
-          ),
+            ),
+            const Gutter(),
+            Padding(
+              padding: const EdgeInsets.only(left: 5),
+              child: Text(
+                title,
+                style:
+                    const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const Gutter(),
+          ],
         ),
-        const Gutter(),
-        Padding(
-          padding: const EdgeInsets.only(left: 5),
-          child: Text(
-            title,
-            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-          ),
-        ),
-        const Gutter(),
-      ],
+      ),
     );
   }
 }

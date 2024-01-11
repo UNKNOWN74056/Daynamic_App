@@ -56,71 +56,75 @@ class _Blogs_SceenState extends State<Blogs_Screen> {
                 } else if (value.storelist.status == Status.COMPLETED ||
                     value.blogsList.status == Status.COMPLETED) {
                   final store = value.storelist.data!;
-                  return Column(
-                    children: [
-                      Container(
-                        height: 150,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              provider.getColorFromName(store.s66 ?? ""),
-                              Colors.black,
+                  return Container(
+                    
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 150,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                provider.getColorFromName(store.s66 ?? ""),
+                                Colors.black,
+                              ],
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.05),
+                                spreadRadius: 1,
+                                blurRadius: 4,
+                                offset: const Offset(0, 3),
+                              ),
                             ],
                           ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.05),
-                              spreadRadius: 1,
-                              blurRadius: 4,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
-                        ),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            widget.text,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.white,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              widget.text,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.white,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const Gutter(),
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: value.blogsList.data!.length,
-                          itemBuilder: (context, index) {
-                            final Blogs_data blogsData =
-                                value.blogsList.data![index];
-
-                            return GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Blog_detail(
-                                            blogList: blogsData,
-                                            selectedIndex: index,
-                                            store: store)));
-                              },
-                              child: Blog_widget(
-                                imagepath:
-                                    imagespath + (blogsData.postPhotos ?? ""),
-                                time: blogsData.postDate ?? "",
-                                chat: blogsData.postComments ?? "",
-                                title: blogsData.postTitle ?? "",
-                              ),
-                            );
-                          },
+                        const Gutter(),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: value.blogsList.data!.length,
+                            itemBuilder: (context, index) {
+                              final Blogs_data blogsData =
+                                  value.blogsList.data![index];
+                    
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Blog_detail(
+                                              blogList: blogsData,
+                                              selectedIndex: index,
+                                              store: store)));
+                                },
+                                child: Blog_widget(
+                                  imagepath:
+                                      imagespath + (blogsData.postPhotos ?? ""),
+                                  time: blogsData.postDate ?? "",
+                                  chat: blogsData.postComments ?? "",
+                                  title: blogsData.postTitle ?? "",
+                                ),
+                              );
+                            },
+                          ),
                         ),
-                      ),
-                    ],
+                        
+                      ],
+                    ),
                   );
                 }
                 return const Center(
