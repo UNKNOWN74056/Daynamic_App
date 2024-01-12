@@ -163,7 +163,10 @@ class _Jobs_pageState extends State<Jobs_page> {
                         'Offers'
                       ],
                       linkCallbacks: [
-                        () {},
+                        () {
+                          Navigator.pushNamed(
+                              context, Routesname.Resposive_layout);
+                        },
                         () {
                           Navigator.pushNamed(context, Routesname.About_Us);
                         },

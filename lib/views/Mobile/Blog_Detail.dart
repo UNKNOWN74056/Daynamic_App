@@ -333,7 +333,9 @@ class _Blog_detailState extends State<Blog_detail> {
                 "Offers"
               ],
               linkCallbacks: [
-                () {},
+                () {
+                   Navigator.pushNamed(context, Routesname.Resposive_layout);
+                },
                 () {
                   Navigator.pushNamed(context, Routesname.About_Us);
                 },

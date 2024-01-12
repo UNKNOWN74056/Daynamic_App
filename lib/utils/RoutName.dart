@@ -15,4 +15,5 @@ class Routesname {
   static const Contact = 'Contact';
   static const Job = 'Jobs';
   static const offer = 'offer';
+  static const Cart = 'Cart';
 }

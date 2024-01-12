@@ -1,7 +1,9 @@
+import 'package:api_project/components/Colors.dart';
 import 'package:api_project/components/Quantity_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gutter/flutter_gutter.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProductWidget extends StatelessWidget {
   final String imagePath;
@@ -9,6 +11,8 @@ class ProductWidget extends StatelessWidget {
   final String productPrice;
   final String currency;
   final String discount;
+  final VoidCallback ontap;
+  final Color color;
 
   const ProductWidget({
     super.key,
@@ -17,6 +21,8 @@ class ProductWidget extends StatelessWidget {
     required this.productPrice,
     required this.currency,
     required this.discount,
+    required this.ontap,
+    required this.color,
   });
 
   @override
@@ -92,7 +98,26 @@ class ProductWidget extends StatelessWidget {
                   const Gutter(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [QuantityWidgetContent(productName: productName)],
+                    children: [
+                      ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: color,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          onPressed: ontap,
+                          icon: const Icon(
+                            FontAwesomeIcons.cartPlus,
+                            color: AppColors.white,
+                          ),
+                          label: const Text(
+                            "Add",
+                            style: TextStyle(color: AppColors.white),
+                          )),
+                      const Gutter(),
+                      QuantityWidgetContent(productName: productName)
+                    ],
                   ),
                 ],
               ),

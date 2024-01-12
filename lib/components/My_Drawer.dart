@@ -2,6 +2,7 @@ import 'package:api_project/components/Get_in_Touch.dart';
 import 'package:api_project/model/Token.dart';
 import 'package:api_project/provider/All_Deparments.dart';
 import 'package:api_project/utils/RoutName.dart';
+import 'package:api_project/views/Mobile/Web_View.dart';
 import 'package:api_project/views/User_View_Model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -42,9 +43,20 @@ class _MyDrawerState extends State<MyDrawer> {
                     child: CachedNetworkImage(
                   imageUrl: storeLogo ?? " ",
                 )),
-                const ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text("Login"),
+                GestureDetector(
+                  onTap: () {
+                  
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Web_view_page(),
+                      ),
+                    );
+                  },
+                  child: const ListTile(
+                    leading: Icon(Icons.person),
+                    title: Text("Login"),
+                  ),
                 ),
                 const Divider(
                   thickness: 0.1,
