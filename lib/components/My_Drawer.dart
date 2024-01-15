@@ -1,6 +1,7 @@
 import 'package:api_project/components/Get_in_Touch.dart';
 import 'package:api_project/model/Token.dart';
 import 'package:api_project/provider/All_Deparments.dart';
+import 'package:api_project/provider/Three_taps_counter.dart';
 import 'package:api_project/utils/RoutName.dart';
 import 'package:api_project/views/Mobile/Web_View.dart';
 import 'package:api_project/views/User_View_Model.dart';
@@ -24,6 +25,8 @@ class _MyDrawerState extends State<MyDrawer> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ProviderController>(context, listen: false);
+    final counterprovider =
+        Provider.of<CounterProvider>(context, listen: false);
     User_view_Model userModel = User_view_Model();
 
     return FutureBuilder<UserToken?>(
@@ -43,27 +46,6 @@ class _MyDrawerState extends State<MyDrawer> {
                     child: CachedNetworkImage(
                   imageUrl: storeLogo ?? " ",
                 )),
-                GestureDetector(
-                  onTap: () {
-                  
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Web_view_page(),
-                      ),
-                    );
-                  },
-                  child: const ListTile(
-                    leading: Icon(Icons.person),
-                    title: Text("Login"),
-                  ),
-                ),
-                const Divider(
-                  thickness: 0.1,
-                  color: AppColors.textColor,
-                  indent: 20,
-                  endIndent: 20,
-                ),
                 const ListTile(
                   leading: Icon(
                     Icons.home,
@@ -151,6 +133,34 @@ class _MyDrawerState extends State<MyDrawer> {
                   indent: 20,
                   endIndent: 20,
                 ),
+                Consumer<CounterProvider>(
+                  builder: (context, counterProvider, child) {
+                    return Visibility(
+                      visible: counterProvider.showLoginButton,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Web_view_page(),
+                            ),
+                          );
+                          counterProvider.setShowLoginButton(false);
+                        },
+                        child: const ListTile(
+                          leading: Icon(Icons.person),
+                          title: Text("Login"),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                const Divider(
+                  thickness: 0.1,
+                  color: AppColors.textColor,
+                  indent: 20,
+                  endIndent: 20,
+                ),
                 const Gutter(),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
@@ -230,17 +240,27 @@ class _MyDrawerState extends State<MyDrawer> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      "Copyright©2023 ",
-                      style: TextStyle(fontSize: 10),
+                    GestureDetector(
+                      onTap: () {
+                        counterprovider.incrementCounter();
+                        print(counterprovider.counter);
+
+                        if (counterprovider.counter >= 3) {
+                          counterprovider.showLoginButton;
+                        }
+                      },
+                      child: const Text(
+                        "Copyright©2023 ",
+                        style: TextStyle(fontSize: 12),
+                      ),
                     ),
                     Text(storefotter ?? "",
-                        style: const TextStyle(fontSize: 10)),
+                        style: const TextStyle(fontSize: 12)),
                   ],
                 ),
                 const Center(
                     child: Text(" All rights reserved",
-                        style: TextStyle(fontSize: 10))),
+                        style: TextStyle(fontSize: 12))),
                 const Gutter()
               ],
             ),

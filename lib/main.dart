@@ -3,6 +3,7 @@ import 'package:api_project/provider/All_Deparments.dart';
 import 'package:api_project/provider/Cart_provider.dart';
 import 'package:api_project/provider/Payment_provider.dart';
 import 'package:api_project/provider/Quantity_provider.dart';
+import 'package:api_project/provider/Three_taps_counter.dart';
 import 'package:api_project/provider/Validation_provider.dart';
 import 'package:api_project/services/Home_View_model.dart';
 import 'package:api_project/utils/RoutName.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
               ChangeNotifierProvider(create: (context) => QuantityProvider()),
               ChangeNotifierProvider(create: (context) => PaymentProvider()),
               ChangeNotifierProvider(create: (context) => CartProvider()),
+              ChangeNotifierProvider(create: (context) => CounterProvider()),
             ],
             child: MaterialApp(
               title: 'Flutter Demo',
