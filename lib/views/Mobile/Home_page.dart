@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Game zone"),
+        title: const Text("Fashion Store"),
         actions: [
           GestureDetector(
             onTap: () {
@@ -499,7 +499,8 @@ class _HomePageState extends State<HomePage> {
                                 image: item.itemPhoto1 ?? "",
                                 productName: item.itemName ?? "",
                                 productPrice: item.itemPrice ?? "",
-                                quantity: quantityprovider.quantity, // You can modify this based on your requirements
+                                quantity: quantityprovider
+                                    .quantity, // You can modify this based on your requirements
                               ));
                             },
                             color:

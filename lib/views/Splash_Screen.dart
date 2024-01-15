@@ -30,7 +30,7 @@ class _Splash_ScreenState extends State<Splash_Screen> {
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: Center(
-                    child: Image.asset("assets/gamezoneicon.png"),
+                    child: Image.asset("assets/amjeeicon.png"),
                   )),
             ),
           ],
