@@ -121,8 +121,6 @@ class _ContactState extends State<Contact> {
                     },
                   );
                 } else if (snapshot.hasError) {
-                  // Handle the case where an error occurred
-                  print('Error: ${snapshot.error}');
                   return const Text('Error loading map');
                 } else {
                   return const CircularProgressIndicator();
@@ -142,9 +140,28 @@ class _ContactState extends State<Contact> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const Gutter(),
-            Text(
-              widget.store.s47 ?? "",
-              style: const TextStyle(fontSize: 15),
+            GestureDetector(
+              onTap: () {
+                provider.launchwhatsappURLwithphone(widget.store.s47 ?? "");
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.store.s47 ?? "",
+                    style: const TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                  const Gutter(),
+                  Text(
+                    "say hi",
+                    style: TextStyle(
+                        color:
+                            provider.getColorFromName(widget.store.s66 ?? "")),
+                  )
+                ],
+              ),
             ),
             const Gutter(),
             Icon(
@@ -155,9 +172,26 @@ class _ContactState extends State<Contact> {
             const Text("Adress",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             const Gutter(),
-            Text(
-              widget.store.drWebcontactaddress ?? " ",
-              textAlign: TextAlign.center,
+            GestureDetector(
+              onTap: () {
+                provider.launchMap(widget.store.drWebcontactaddress ?? "");
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.store.drWebcontactaddress ?? " ",
+                    textAlign: TextAlign.center,
+                  ),
+                  const Gutter(),
+                  Text(
+                    "Open map",
+                    style: TextStyle(
+                        color:
+                            provider.getColorFromName(widget.store.s66 ?? "")),
+                  )
+                ],
+              ),
             ),
             const Gutter(),
             Icon(
@@ -170,7 +204,23 @@ class _ContactState extends State<Contact> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const Gutter(),
-            Text(widget.store.s48 ?? ""),
+            GestureDetector(
+                onTap: () {
+                  provider.openGmail(widget.store.s48 ?? "");
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(widget.store.s48 ?? ""),
+                    const Gutter(),
+                    Text(
+                      "Write Email",
+                      style: TextStyle(
+                          color: provider
+                              .getColorFromName(widget.store.s66 ?? "")),
+                    )
+                  ],
+                )),
 
             const Gutter(),
 

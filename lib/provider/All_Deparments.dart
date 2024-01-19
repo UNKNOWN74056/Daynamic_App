@@ -7,7 +7,7 @@ class ProviderController extends ChangeNotifier {
   //SETTER
 
   late Items_data _selectedItem;
-  String? _selectedpayment = 'USDT';
+  String? _selectedpayment = 'Cash On Delivery';
   late String? videoUrl;
   bool _firstValue = false;
   bool _secondvalue = false;
@@ -29,6 +29,7 @@ class ProviderController extends ChangeNotifier {
     'BTC',
     'Easy Paisa',
     'Jazz Cash',
+    'Cash On Delivery',
   ];
 
   setSelectedpayment(String value) {
@@ -149,11 +150,13 @@ class ProviderController extends ChangeNotifier {
     }
   }
 
-  Future<void> whatapplunch({required String message}) async {
+  Future<void> whatapplunch(
+      {required String message, required String number}) async {
     // Replace with your WhatsApp number and encode the message
     final String encodedMessage = Uri.encodeComponent(message);
+    final String encodednumber = Uri.encodeComponent(message);
     final String whatsappURL =
-        'https://api.whatsapp.com/send/?phone=%2B923339688283&text=$encodedMessage&type=phone_number&app_absent=0';
+        'https://api.whatsapp.com/send/?phone=$encodednumber&text=$encodedMessage&type=phone_number&app_absent=0';
 
     final Uri whatsappUri = Uri.parse(whatsappURL);
 
@@ -161,6 +164,42 @@ class ProviderController extends ChangeNotifier {
       await launchUrl(whatsappUri);
     } else {
       utils.showToastMessage("Could not load the page!");
+    }
+  }
+
+  Future<void> launchwhatsappURLwithphone(String message) async {
+    final encodedMessage = Uri.encodeComponent(message);
+    final whatsappURL =
+        'https://api.whatsapp.com/send/?phone=$encodedMessage&text=Website+Support+Inquerye&type=phone_number&app_absent=0';
+    final Uri whatsappUri = Uri.parse(whatsappURL);
+    if (await canLaunch(whatsappUri.toString())) {
+      await launch(whatsappUri.toString());
+    } else {
+      utils.showToastMessage("No what app is install ");
+    }
+  }
+
+  void launchMap(String address) async {
+    String query = Uri.encodeComponent(address);
+    String googleUrl = "https://www.google.com/maps/search/?api=1&query=$query";
+
+    if (await canLaunch(googleUrl)) {
+      await launch(googleUrl);
+    } else {
+      utils.showToastMessage("No map sorry ");
+    }
+  }
+
+  Future<void> openGmail(String recipientEmail) async {
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: recipientEmail,
+    );
+
+    if (await canLaunch(emailLaunchUri.toString())) {
+      await launch(emailLaunchUri.toString());
+    } else {
+      throw 'Could not launch Gmail';
     }
   }
 }

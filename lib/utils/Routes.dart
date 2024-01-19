@@ -1,6 +1,5 @@
 import 'package:api_project/utils/Responsive_layout.dart';
 import 'package:api_project/utils/RoutName.dart';
-import 'package:api_project/views/Mobile/Add_Cart_page.dart';
 import 'package:api_project/views/Mobile/Footer_links.dart/About_page.dart';
 import 'package:api_project/views/Mobile/Footer_links.dart/Blogs_page.dart';
 import 'package:api_project/views/Mobile/Footer_links.dart/Contact_page.dart';
@@ -36,9 +35,7 @@ class Routes {
       case Routesname.offer:
         return MaterialPageRoute(
             builder: (BuildContext context) => const Offer_widget());
-      case Routesname.Cart:
-        return MaterialPageRoute(
-            builder: (BuildContext context) => const Add_Cart_page());
+
       case Routesname.Contact:
         return MaterialPageRoute(
             builder: (BuildContext context) =>

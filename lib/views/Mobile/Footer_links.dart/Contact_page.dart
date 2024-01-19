@@ -39,7 +39,8 @@ class _Blogs_SceenState extends State<Contact_page> {
         ),
         body: ChangeNotifierProvider<HomeViewModel>(
             create: (BuildContext context) => homeviewmodel,
-            child: Consumer<HomeViewModel>(builder: (context, value, child) {
+            child: Consumer<HomeViewModel>(
+              builder: (context, value, child) {
               if (value.storelist.status == Status.LOADING) {
                 return const Center(
                   child: SpinKitThreeBounce(
@@ -163,9 +164,28 @@ class _Blogs_SceenState extends State<Contact_page> {
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       const Gutter(),
-                      Text(
-                        store.s47 ?? "",
-                        style: const TextStyle(fontSize: 15),
+                      GestureDetector(
+                        onTap: () {
+                          provider.launchwhatsappURLwithphone(store.s47 ?? "");
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              store.s47 ?? "",
+                              style: const TextStyle(
+                                fontSize: 15,
+                              ),
+                            ),
+                            const Gutter(),
+                            Text(
+                              "say hi",
+                              style: TextStyle(
+                                  color: provider
+                                      .getColorFromName(store.s66 ?? "")),
+                            )
+                          ],
+                        ),
                       ),
                       const Gutter(),
                       Icon(
@@ -177,9 +197,26 @@ class _Blogs_SceenState extends State<Contact_page> {
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold)),
                       const Gutter(),
-                      Text(
-                        store.drWebcontactaddress ?? " ",
-                        textAlign: TextAlign.center,
+                      GestureDetector(
+                        onTap: () {
+                          provider.launchMap(store.drWebcontactaddress ?? "");
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              store.drWebcontactaddress ?? " ",
+                              textAlign: TextAlign.center,
+                            ),
+                            const Gutter(),
+                            Text(
+                              "Open map",
+                              style: TextStyle(
+                                  color: provider
+                                      .getColorFromName(store.s66 ?? "")),
+                            )
+                          ],
+                        ),
                       ),
                       const Gutter(),
                       Icon(
@@ -193,7 +230,23 @@ class _Blogs_SceenState extends State<Contact_page> {
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       const Gutter(),
-                      Text(store.s48 ?? ""),
+                      GestureDetector(
+                          onTap: () {
+                            provider.openGmail(store.s48 ?? "");
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(store.s48 ?? ""),
+                              const Gutter(),
+                              Text(
+                                "Write Email",
+                                style: TextStyle(
+                                    color: provider
+                                        .getColorFromName(store.s66 ?? "")),
+                              )
+                            ],
+                          )),
 
                       const Gutter(),
 

@@ -6,10 +6,12 @@ import 'package:provider/provider.dart';
 
 class Paymentwidget extends StatelessWidget {
   final String itemPrice;
+  final String currency;
 
   const Paymentwidget({
     super.key,
     required this.itemPrice,
+    required this.currency,
   });
 
   @override
@@ -73,8 +75,19 @@ class Paymentwidget extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-            Text(
-              "\$${paymentProvider.calculateTotal(itemPriceDouble).toStringAsFixed(2)}",
+            Row(
+              children: [
+                Text(
+                  currency,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const Gutter(),
+                Text(
+                  paymentProvider
+                      .calculateTotal(itemPriceDouble)
+                      .toStringAsFixed(2),
+                ),
+              ],
             ),
           ],
         ),

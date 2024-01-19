@@ -2,7 +2,6 @@ import 'package:api_project/model/Token.dart';
 import 'package:api_project/provider/All_Deparments.dart';
 import 'package:api_project/provider/Cart_provider.dart';
 import 'package:api_project/provider/Payment_provider.dart';
-import 'package:api_project/provider/Quantity_provider.dart';
 import 'package:api_project/provider/Three_taps_counter.dart';
 import 'package:api_project/provider/Validation_provider.dart';
 import 'package:api_project/services/Home_View_model.dart';
@@ -39,7 +38,6 @@ class MyApp extends StatelessWidget {
               ChangeNotifierProvider(create: (context) => HomeViewModel()),
               ChangeNotifierProvider(create: (context) => ValidationProvider()),
               ChangeNotifierProvider(create: (context) => User_view_Model()),
-              ChangeNotifierProvider(create: (context) => QuantityProvider()),
               ChangeNotifierProvider(create: (context) => PaymentProvider()),
               ChangeNotifierProvider(create: (context) => CartProvider()),
               ChangeNotifierProvider(create: (context) => CounterProvider()),

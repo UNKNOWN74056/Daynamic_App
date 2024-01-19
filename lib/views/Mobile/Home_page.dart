@@ -8,12 +8,9 @@ import 'package:api_project/components/Latest_products_widget.dart';
 import 'package:api_project/components/My_Drawer.dart';
 import 'package:api_project/data/Responces/Status.dart';
 import 'package:api_project/model/Blog_model.dart';
-import 'package:api_project/model/Cart_model.dart';
 import 'package:api_project/model/Items_model.dart';
 import 'package:api_project/model/Store_Model.dart';
 import 'package:api_project/provider/All_Deparments.dart';
-import 'package:api_project/provider/Cart_provider.dart';
-import 'package:api_project/provider/Quantity_provider.dart';
 import 'package:api_project/services/Home_View_model.dart';
 import 'package:api_project/utils/Constants.dart';
 import 'package:api_project/utils/RoutName.dart';
@@ -56,18 +53,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Fashion Store"),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, Routesname.Cart);
-            },
-            child: const Icon(
-              FontAwesomeIcons.cartShopping,
-              size: 20,
-            ),
-          ),
-          const Gutter(),
-          const Padding(
+        actions: const [
+          Padding(
             padding: EdgeInsets.only(right: 10),
             child: Icon(
               Icons.search,
@@ -168,8 +155,6 @@ class _HomePageState extends State<HomePage> {
     required List<Blogs_data> blogList,
   }) {
     final provider = Provider.of<ProviderController>(context, listen: false);
-    final quantityprovider =
-        Provider.of<QuantityProvider>(context, listen: false);
     Future.delayed(Duration.zero, () {
       final userViewModel = context.read<User_view_Model>();
       userViewModel.saveStoreLogo(storelist);
@@ -491,18 +476,7 @@ class _HomePageState extends State<HomePage> {
                             );
                           },
                           child: ProductWidget(
-                            ontap: () {
-                              // Call the addToCart method from the CartProvider
-                              CartProvider cartProvider =
-                                  context.read<CartProvider>();
-                              cartProvider.addToCart(CartItem(
-                                image: item.itemPhoto1 ?? "",
-                                productName: item.itemName ?? "",
-                                productPrice: item.itemPrice ?? "",
-                                quantity: quantityprovider
-                                    .quantity, // You can modify this based on your requirements
-                              ));
-                            },
+                            ontap: () {},
                             color:
                                 provider.getColorFromName(storelist.s66 ?? ""),
                             discount: item.itemDiscount ?? "",
@@ -550,18 +524,7 @@ class _HomePageState extends State<HomePage> {
                         );
                       },
                       child: ProductWidget(
-                        ontap: () {
-                          // Call the addToCart method from the CartProvider
-                          CartProvider cartProvider =
-                              context.read<CartProvider>();
-                          cartProvider.addToCart(CartItem(
-                            image: product.itemPhoto1 ?? "",
-                            productName: product.itemName ?? "",
-                            productPrice: product.itemPrice ?? "",
-                            quantity: quantityprovider
-                                .quantity, // You can modify this based on your requirements
-                          ));
-                        },
+                        ontap: () {},
                         color: provider.getColorFromName(storelist.s66 ?? ""),
                         discount: product.itemDiscount ?? "",
                         currency: product.itemCurrency ?? "",
@@ -608,18 +571,7 @@ class _HomePageState extends State<HomePage> {
                         );
                       },
                       child: ProductWidget(
-                        ontap: () {
-                          // Call the addToCart method from the CartProvider
-                          CartProvider cartProvider =
-                              context.read<CartProvider>();
-                          cartProvider.addToCart(CartItem(
-                            image: product.itemPhoto1 ?? "",
-                            productName: product.itemName ?? "",
-                            productPrice: product.itemPrice ?? "",
-                            quantity: quantityprovider
-                                .quantity, // You can modify this based on your requirements
-                          ));
-                        },
+                        ontap: () {},
                         color: provider.getColorFromName(storelist.s66 ?? ""),
                         discount: product.itemDiscount ?? "",
                         currency: product.itemCurrency ?? "",
