@@ -1,4 +1,5 @@
 import 'package:api_project/model/Jobs_model.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -83,9 +84,9 @@ class _Jobs_pageState extends State<Jobs_page> {
                           ),
                         ],
                       ),
-                      child: const Column(
+                      child: Column(
                         children: [
-                          Align(
+                          const Align(
                             alignment: Alignment.center,
                             child: Text(
                               "Our Hirings",
@@ -96,9 +97,43 @@ class _Jobs_pageState extends State<Jobs_page> {
                               ),
                             ),
                           ),
-                          Text(
-                            "With game zone sajid - SS Plaza Karkhano you can achieve in your career goals by finding the best-suited job for yourself. Send us your CV here. Our representative will contact you soon.",
-                            style: TextStyle(color: AppColors.white),
+                          Row(
+                            children: [
+// ...
+
+                              Expanded(
+                                child: RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      const TextSpan(
+                                        text:
+                                            "With game zone sajid - SS Plaza Karkhano you can achieve in your career goals by finding the best-suited job for yourself. Send us your CV ",
+                                        style:
+                                            TextStyle(color: AppColors.white),
+                                      ),
+                                      TextSpan(
+                                        text: "here",
+                                        style: TextStyle(
+                                          color: provider.getColorFromName(
+                                              store.s66 ?? ""),
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            provider.openGmail(store.s12 ?? "");
+                                          },
+                                      ),
+                                      const TextSpan(
+                                        text:
+                                            ". Our representative will contact you soon.",
+                                        style:
+                                            TextStyle(color: AppColors.white),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
                         ],
                       ),

@@ -215,11 +215,15 @@ class _Payment_pageState extends State<Payment_page> {
                               builder: (context, value, child) {
                                 return Row(
                                   children: [
-                                    Checkbox(
-                                        value: value.firstValue,
-                                        onChanged: (val) {
-                                          value.firstValue = val!;
-                                        }),
+                                    Radio<bool>(
+                                      value: true,
+                                      groupValue: value
+                                          .firstValue, // Add this line to handle the selected value
+                                      onChanged: (val) {
+                                        value.setfirstValue(
+                                            val!); // Add this line to set the selected value
+                                      },
+                                    ),
                                     const Text("Lease"),
                                   ],
                                 );
@@ -229,16 +233,21 @@ class _Payment_pageState extends State<Payment_page> {
                               builder: (context, value, child) {
                                 return Row(
                                   children: [
-                                    Checkbox(
-                                        value: value.secondvalue,
-                                        onChanged: (val) {
-                                          value.secondValue = val!;
-                                        }),
+                                    Radio<bool>(
+                                      value: false,
+                                      groupValue: value
+                                          .firstValue, // Add this line to handle the selected value
+                                      onChanged: (val) {
+                                        value.setfirstValue(
+                                            val!); // Add this line to set the selected value
+                                      },
+                                    ),
                                     const Text("Cash")
                                   ],
                                 );
                               },
                             ),
+
                             const Gutter(),
                             ElevatedButton.icon(
                               style: ElevatedButton.styleFrom(
@@ -246,7 +255,8 @@ class _Payment_pageState extends State<Payment_page> {
                                   borderRadius: BorderRadius.circular(
                                       0), // Set the border radius to 0 for a square shape
                                 ),
-                                backgroundColor: AppColors.purple,
+                                backgroundColor:
+                                    provider.getColorFromName(store.s66 ?? ""),
                                 foregroundColor: AppColors.white,
                               ),
                               label: const Text(
@@ -272,11 +282,15 @@ class _Payment_pageState extends State<Payment_page> {
                                   String selectedPayment =
                                       provider.selectedpayment ?? "";
                                   String emailto = store.s67 ?? "";
+                                  bool isCashPayment = provider
+                                      .firstValue; // Get the selected payment method
+                                  String purchasecontract =
+                                      isCashPayment ? "lease" : "Cash";
 
                                   String defaultEmailSubject =
-                                      "I want to order this product please reply as soon as possible ";
+                                      "Oder on ${store.s9} ";
                                   String defaultEmailBody =
-                                      "Item Name ${widget.item.itemName} \nName: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email\nPayment:$selectedPayment\nQuantity:$quantity";
+                                      "Item Name ${widget.item.itemName} \nName: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email\nPayment:$selectedPayment\nQuantity:$quantity\nPurchade Contract: $purchasecontract";
 
                                   String emailLaunchUri =
                                       'mailto:$emailto ?subject=$defaultEmailSubject&body=$defaultEmailBody';
@@ -314,12 +328,16 @@ class _Payment_pageState extends State<Payment_page> {
                                       validateprovider.whatappcontroller.text;
                                   String email =
                                       validateprovider.emailcontroller.text;
+                                  bool isCashPayment = provider
+                                      .firstValue; // Get the selected payment method
+                                  String purchasecontract =
+                                      isCashPayment ? "lease" : "Cash";
 
                                   String defaultWhatsAppMessage =
-                                      "Can i get more details about this product. Name :  ${widget.item.itemName ?? ""} price: ${widget.item.itemPrice}Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email";
+                                      "Can i get more details about this product. Name :  ${widget.item.itemName ?? ""} price: ${widget.item.itemPrice}Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email\nPayment Contract ${provider.firstValue}\nPurchade Contract: $purchasecontract";
 
                                   await provider.whatapplunch(
-                                      number: store.s68 ?? "",
+                                      phoneNumber: store.s68 ?? '',
                                       message: defaultWhatsAppMessage);
                                 }
                               },

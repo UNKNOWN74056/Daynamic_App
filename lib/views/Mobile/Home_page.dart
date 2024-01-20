@@ -112,9 +112,6 @@ class _HomePageState extends State<HomePage> {
                                 AppColors.purple, // Set the background color
                           ),
                           onPressed: () async {
-                            // await homeviewmodel.storeApi();
-                            // await homeviewmodel.itemApi();
-                            // await homeviewmodel.blogsApi();
                             homeviewmodel.fetchData();
                           },
                           child: const Text(

@@ -242,57 +242,7 @@ class _Blog_detailState extends State<Blog_detail> {
                 ],
               ),
             ),
-            const Gutter(),
-            const Text(
-              "Recent Blogs",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const Gutter(),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "09 Kinds Of Vegetables",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "MAR 05, 2019",
-                style: TextStyle(color: AppColors.grey),
-              ),
-            ),
-            const Gutter(),
 
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "Tips You To Balance",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "Nutrition Meal Day",
-                style: TextStyle(color: AppColors.grey),
-              ),
-            ),
-            const Gutter(),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "4 Principles Help You Lose ",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "Weight With Vegetables",
-                style: TextStyle(color: AppColors.grey),
-              ),
-            ),
             const Gutter(),
             const SizedBox(
               width: double.infinity,
@@ -334,7 +284,7 @@ class _Blog_detailState extends State<Blog_detail> {
               ],
               linkCallbacks: [
                 () {
-                   Navigator.pushNamed(context, Routesname.Resposive_layout);
+                  Navigator.pushNamed(context, Routesname.Resposive_layout);
                 },
                 () {
                   Navigator.pushNamed(context, Routesname.About_Us);

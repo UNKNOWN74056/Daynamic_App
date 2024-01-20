@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gutter/flutter_gutter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class Details_page extends StatefulWidget {
@@ -195,16 +194,17 @@ class _Details_pageState extends State<Details_page> {
                           ),
                         );
                       } else {
-                        return Center(
+                        return const Center(
                           child: SizedBox(
                             height: 300,
                             width: 200,
                             child: Column(
                               children: [
-                                Lottie.asset(
-                                  'assets/Novideo.json',
+                                Icon(
+                                  FontAwesomeIcons.videoSlash,
+                                  size: 50,
                                 ),
-                                const Text(
+                                Text(
                                   'No video available',
                                   style: TextStyle(fontSize: 16),
                                 ),

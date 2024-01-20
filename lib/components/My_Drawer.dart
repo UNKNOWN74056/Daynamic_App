@@ -145,7 +145,6 @@ class _MyDrawerState extends State<MyDrawer> {
                               builder: (context) => const Web_view_page(),
                             ),
                           );
-                          counterProvider.setShowLoginButton(false);
                         },
                         child: const ListTile(
                           leading: Icon(Icons.person),

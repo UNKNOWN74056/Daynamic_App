@@ -42,25 +42,6 @@ class _Web_view_pageState extends State<Web_view_page> {
               }
             },
             child: const Icon(Icons.arrow_back_ios)),
-        title: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 4.0),
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 249, 245, 245),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: TextField(
-            onSubmitted: (value) {
-              URL = WebUri(value);
-              if (URL.scheme.isEmpty) {
-                URL = WebUri("${InitialUrl}search?q=$value");
-              }
-            },
-            controller: URLCONTROLLER,
-            textAlignVertical: TextAlignVertical.center,
-            decoration: const InputDecoration(
-                hintText: "Enter your site", prefixIcon: Icon(Icons.search)),
-          ),
-        ),
         actions: [
           GestureDetector(
               onTap: () {

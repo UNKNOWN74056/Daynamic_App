@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class PaymentProvider extends ChangeNotifier {
-  int _quantity = 0;
+  int _quantity = 1;
 
   int get quantity => _quantity;
 

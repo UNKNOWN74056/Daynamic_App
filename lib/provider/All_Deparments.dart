@@ -10,12 +10,12 @@ class ProviderController extends ChangeNotifier {
   String? _selectedpayment = 'Cash On Delivery';
   late String? videoUrl;
   bool _firstValue = false;
-  bool _secondvalue = false;
+ // bool _secondvalue = false;
   String? mapUrl;
 
   //GETTERS
   bool get firstValue => _firstValue;
-  bool get secondvalue => _secondvalue;
+  //bool get secondvalue => _secondvalue;
   String? get selectedpayment => _selectedpayment;
   Items_data get selectedItem => _selectedItem;
 
@@ -64,13 +64,8 @@ class ProviderController extends ChangeNotifier {
     }
   }
 
-  set firstValue(bool value) {
+  void  setfirstValue(bool value) {
     _firstValue = value;
-    notifyListeners();
-  }
-
-  set secondValue(bool value) {
-    _secondvalue = value;
     notifyListeners();
   }
 
@@ -150,13 +145,12 @@ class ProviderController extends ChangeNotifier {
     }
   }
 
-  Future<void> whatapplunch(
-      {required String message, required String number}) async {
+ Future<void> whatapplunch(
+      {required String phoneNumber, required String message}) async {
     // Replace with your WhatsApp number and encode the message
     final String encodedMessage = Uri.encodeComponent(message);
-    final String encodednumber = Uri.encodeComponent(message);
     final String whatsappURL =
-        'https://api.whatsapp.com/send/?phone=$encodednumber&text=$encodedMessage&type=phone_number&app_absent=0';
+        'https://api.whatsapp.com/send/?phone=$phoneNumber&text=$encodedMessage&type=phone_number&app_absent=0';
 
     final Uri whatsappUri = Uri.parse(whatsappURL);
 
@@ -166,6 +160,7 @@ class ProviderController extends ChangeNotifier {
       utils.showToastMessage("Could not load the page!");
     }
   }
+
 
   Future<void> launchwhatsappURLwithphone(String message) async {
     final encodedMessage = Uri.encodeComponent(message);
