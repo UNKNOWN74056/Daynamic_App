@@ -288,9 +288,9 @@ class _Payment_pageState extends State<Payment_page> {
                                       isCashPayment ? "lease" : "Cash";
 
                                   String defaultEmailSubject =
-                                      "Oder on ${store.s9} ";
+                                      "Order on ${store.s9} ";
                                   String defaultEmailBody =
-                                      "Item Name ${widget.item.itemName} \nName: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email\nPayment:$selectedPayment\nQuantity:$quantity\nPurchade Contract: $purchasecontract";
+                                      "Item Name: ${widget.item.itemName}\nCustomer Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email\nPayment:$selectedPayment\nQuantity:$quantity\nPurchade Contract: $purchasecontract";
 
                                   String emailLaunchUri =
                                       'mailto:$emailto ?subject=$defaultEmailSubject&body=$defaultEmailBody';
@@ -334,7 +334,8 @@ class _Payment_pageState extends State<Payment_page> {
                                       isCashPayment ? "lease" : "Cash";
 
                                   String defaultWhatsAppMessage =
-                                      "Can i get more details about this product. Name :  ${widget.item.itemName ?? ""} price: ${widget.item.itemPrice}Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email\nPayment Contract ${provider.firstValue}\nPurchade Contract: $purchasecontract";
+                                      "How to Buy.\n"
+                                      "Name :  ${widget.item.itemName ?? ""} price: ${widget.item.itemPrice}Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email\nPurchase Mode: $purchasecontract";
 
                                   await provider.whatapplunch(
                                       phoneNumber: store.s68 ?? '',
@@ -418,7 +419,10 @@ class _Payment_pageState extends State<Payment_page> {
                                                   FontAwesomeIcons.whatsapp),
                                               onPressed: () async {
                                                 await provider
-                                                    .launchwhatsappURL();
+                                                    .launchwhatsappURLwithphone(
+                                                        agentList[index]
+                                                                .agentContact ??
+                                                            '');
                                               },
                                             ),
                                           ],

@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gutter/flutter_gutter.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Offer_widget extends StatefulWidget {
   const Offer_widget({super.key});
@@ -185,12 +186,20 @@ class _Offer_widgetState extends State<Offer_widget> {
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             Expanded(
-                                              child: Text(
-                                                adsData.adLink ?? "",
-                                                style: TextStyle(
-                                                    color: provider
-                                                        .getColorFromName(
-                                                            store.s66 ?? "")),
+                                              child: GestureDetector(
+                                                onTap: () async {
+                                                  final Uri linkUri = Uri.parse(
+                                                      adsData.adLink ?? "");
+                                                  await launch(
+                                                      linkUri.toString());
+                                                },
+                                                child: Text(
+                                                  adsData.adLink ?? "",
+                                                  style: TextStyle(
+                                                      color: provider
+                                                          .getColorFromName(
+                                                              store.s66 ?? "")),
+                                                ),
                                               ),
                                             )
                                           ],

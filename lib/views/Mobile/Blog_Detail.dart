@@ -109,43 +109,6 @@ class _Blog_detailState extends State<Blog_detail> {
               ),
             ),
             const Gutter(),
-
-            //SHOW PHOTOS SECTION
-            SizedBox(
-              height: 120, // Set a fixed height for the ListView
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: widget.blogList.postPhotos?.split(',').length ?? 0,
-                itemBuilder: (context, index) {
-                  List<String> photoUrls =
-                      widget.blogList.postPhotos?.split(',') ?? [];
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CachedNetworkImage(
-                      imageUrl: Uri.encodeFull(imagespath + (photoUrls[index])),
-                      width: 100,
-                      height: 100,
-                      fit: BoxFit.cover,
-                    ),
-                  );
-                },
-              ),
-            ),
-
-            const Gutter(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                widget.blogList.postText ?? "",
-              ),
-            ),
-            const Gutter(),
-            //AUDIO SECTION
-
-            // Text(
-            //   selectedBlog.postAudio ?? "",
-            // ),
-
             // VEDIO SECTION
             FutureBuilder<void>(
               future: _videoUrlFuture,
@@ -208,6 +171,43 @@ class _Blog_detailState extends State<Blog_detail> {
                 }
               },
             ),
+            const Gutter(),
+
+            const Gutter(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                widget.blogList.postText ?? "",
+              ),
+            ),
+            //SHOW PHOTOS SECTION
+            SizedBox(
+              height: 120, // Set a fixed height for the ListView
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: widget.blogList.postPhotos?.split(',').length ?? 0,
+                itemBuilder: (context, index) {
+                  List<String> photoUrls =
+                      widget.blogList.postPhotos?.split(',') ?? [];
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CachedNetworkImage(
+                      imageUrl: Uri.encodeFull(imagespath + (photoUrls[index])),
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                  );
+                },
+              ),
+            ),
+            const Gutter(),
+            //AUDIO SECTION
+
+            // Text(
+            //   selectedBlog.postAudio ?? "",
+            // ),
+
             const Gutter(),
             Row(
               children: [
