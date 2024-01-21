@@ -3,8 +3,10 @@ import 'package:api_project/components/Text_Field.dart';
 import 'package:api_project/data/Responces/Status.dart';
 import 'package:api_project/model/Agent_model.dart';
 import 'package:api_project/provider/All_Deparments.dart';
+import 'package:api_project/provider/Validation_provider.dart';
 import 'package:api_project/services/Home_View_model.dart';
 import 'package:api_project/utils/Constants.dart';
+import 'package:api_project/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gutter/flutter_gutter.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -33,14 +35,16 @@ class _Blogs_SceenState extends State<Contact_page> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ProviderController>(context, listen: false);
+    final messageprovider =
+        Provider.of<ValidationProvider>(context, listen: false);
+
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.text),
         ),
         body: ChangeNotifierProvider<HomeViewModel>(
             create: (BuildContext context) => homeviewmodel,
-            child: Consumer<HomeViewModel>(
-              builder: (context, value, child) {
+            child: Consumer<HomeViewModel>(builder: (context, value, child) {
               if (value.storelist.status == Status.LOADING) {
                 return const Center(
                   child: SpinKitThreeBounce(
@@ -319,7 +323,10 @@ class _Blogs_SceenState extends State<Contact_page> {
                                                   FontAwesomeIcons.whatsapp),
                                               onPressed: () async {
                                                 await provider
-                                                    .launchwhatsappURL();
+                                                    .launchwhatsappURLwithphone(
+                                                        agentList[index]
+                                                                .agentContact ??
+                                                            "");
                                               },
                                             ),
                                           ],
@@ -338,45 +345,90 @@ class _Blogs_SceenState extends State<Contact_page> {
                       ),
                       const Gutter(),
 
+                      //LEAVING MESSAGE SECTION
                       const Text(
                         "Leave A Message",
                         style: TextStyle(fontSize: 20),
                       ),
                       const Gutter(),
-                      const Text_Field(
-                        labeltext: "Your Name",
-                        hinttext: "Enter your name",
-                      ),
-                      const Gutter(),
-                      const Text_Field(
-                          labeltext: "Your email", hinttext: "enter you email"),
-                      const Gutter(),
-                      const Text_Field(
-                          labeltext: "Enter your message",
-                          hinttext: "enter your message"),
-                      const Gutter(),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Add your payment processing logic here
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.accentColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: Text(
-                            "Send Message",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: AppColors.white,
-                              fontWeight: FontWeight.bold,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Consumer<ValidationProvider>(
+                              builder: (context, value, child) {
+                                return Text_Field(
+                                  errorttext: value.name.error,
+                                  controller: messageprovider.namecontorller,
+                                  labeltext: "Your Name",
+                                  hinttext: "Enter your name",
+                                  onchange: (value) {
+                                    messageprovider.validateName(value);
+                                  },
+                                );
+                              },
                             ),
-                          ),
+                            const Gutter(),
+                            Consumer<ValidationProvider>(
+                              builder: (context, value, child) {
+                                return Text_Field(
+                                  errorttext: value.email.error,
+                                  controller: messageprovider.emailcontroller,
+                                  labeltext: "Your email",
+                                  hinttext: "enter you email",
+                                  onchange: (value) {
+                                    messageprovider.validateEmail(value);
+                                  },
+                                );
+                              },
+                            ),
+                            const Gutter(),
+                            Consumer<ValidationProvider>(
+                              builder: (context, value, child) {
+                                return Text_Field(
+                                  maxline: 3,
+                                  errorttext: value.message.error,
+                                  controller: messageprovider.messagecontorller,
+                                  labeltext: "Enter your message",
+                                  hinttext: "enter your message",
+                                  onchange: (value) {
+                                    messageprovider.validateMessage(value);
+                                  },
+                                );
+                              },
+                            ),
+                            const Gutter(),
+                            ElevatedButton(
+                              onPressed: () async {
+                                if (!messageprovider.ismessageFormValid) {
+                                  utils.Show_Flushbar_Error_Message(
+                                      "Please fill the fields", context);
+                                } else {
+                                  provider.openGmail(store.s67 ?? "");
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.accentColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(16.0),
+                                child: Text(
+                                  "Send Message",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: AppColors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
+                      ///////////////////////////////////////////
                       const Gutter()
                     ],
                   ),

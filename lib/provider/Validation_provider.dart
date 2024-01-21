@@ -6,15 +6,18 @@ class ValidationProvider extends ChangeNotifier {
   late validaitonitem _address = validaitonitem(null, null);
   late validaitonitem _whatsapp = validaitonitem(null, null);
   late validaitonitem _email = validaitonitem(null, null);
+  late validaitonitem _Message = validaitonitem(null, null);
 
   validaitonitem get name => _name;
   validaitonitem get address => _address;
   validaitonitem get whatsapp => _whatsapp;
   validaitonitem get email => _email;
+  validaitonitem get message => _Message;
 
 //Controllers
   final namecontorller = TextEditingController();
   final adresscontorller = TextEditingController();
+  final messagecontorller = TextEditingController();
 
   final whatappcontroller = TextEditingController();
 
@@ -26,6 +29,7 @@ class ValidationProvider extends ChangeNotifier {
     adresscontorller.dispose();
     whatappcontroller.dispose();
     namecontorller.dispose();
+    messagecontorller.dispose();
   }
 
   // Name validation function
@@ -71,6 +75,17 @@ class ValidationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Your validation function
+  void validateMessage(String value) {
+    if (value.isEmpty) {
+      _Message = validaitonitem(value, "Enter your message");
+    } else {
+      _Message =
+          validaitonitem(value, null); 
+    }
+    notifyListeners();
+  }
+
   // Helper function to check if the email is valid
   bool isValidEmail(String email) {
     final emailRegExp = RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
@@ -82,6 +97,14 @@ class ValidationProvider extends ChangeNotifier {
         _address.Value != null &&
         _whatsapp.Value != null &&
         _email.Value != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool get ismessageFormValid {
+    if (_name.Value != null && _Message.Value != null && _email.Value != null) {
       return true;
     } else {
       return false;

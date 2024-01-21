@@ -6,6 +6,7 @@ class Text_Field extends StatelessWidget {
   final onchange;
   final controller;
   final errorttext;
+  final maxline;
   const Text_Field({
     super.key,
     required this.labeltext,
@@ -13,6 +14,7 @@ class Text_Field extends StatelessWidget {
     this.onchange,
     this.controller,
     this.errorttext,
+    this.maxline,
   });
 
   @override
@@ -20,6 +22,7 @@ class Text_Field extends StatelessWidget {
     return TextFormField(
       controller: controller,
       onChanged: onchange,
+      maxLines: maxline,
       decoration: InputDecoration(
         errorText: errorttext,
         labelText: labeltext,
