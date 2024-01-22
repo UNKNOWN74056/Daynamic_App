@@ -290,7 +290,7 @@ class _Payment_pageState extends State<Payment_page> {
                                   String defaultEmailSubject =
                                       "Order on ${store.s9} ";
                                   String defaultEmailBody =
-                                      "Item Name: ${widget.item.itemName}\nCustomer Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email\nPayment:$selectedPayment\nQuantity:$quantity\nPurchade Contract: $purchasecontract";
+                                      "Item Name: ${widget.item.itemName}\nCustomer Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email\nPayment:$selectedPayment\nQuantity:$quantity\nPurchase Contract: $purchasecontract";
 
                                   String emailLaunchUri =
                                       'mailto:$emailto ?subject=$defaultEmailSubject&body=$defaultEmailBody';
@@ -335,7 +335,7 @@ class _Payment_pageState extends State<Payment_page> {
 
                                   String defaultWhatsAppMessage =
                                       "How to Buy.\n"
-                                      "Name :  ${widget.item.itemName ?? ""} price: ${widget.item.itemPrice}Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email\nPurchase Mode: $purchasecontract";
+                                      "Name :  ${widget.item.itemName ?? ""}\nprice: ${widget.item.itemPrice}\nName: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email\nPurchase Mode: $purchasecontract";
 
                                   await provider.whatapplunch(
                                       phoneNumber: store.s68 ?? '',

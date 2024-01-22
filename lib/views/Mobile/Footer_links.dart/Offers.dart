@@ -124,8 +124,10 @@ class _Offer_widgetState extends State<Offer_widget> {
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
                                             ),
-                                            Text(
-                                              adsData.adTitle ?? "",
+                                            Expanded(
+                                              child: Text(
+                                                adsData.adTitle ?? "",
+                                              ),
                                             )
                                           ],
                                         ),
@@ -188,10 +190,24 @@ class _Offer_widgetState extends State<Offer_widget> {
                                             Expanded(
                                               child: GestureDetector(
                                                 onTap: () async {
-                                                  final Uri linkUri = Uri.parse(
-                                                      adsData.adLink ?? "");
-                                                  await launch(
-                                                      linkUri.toString());
+                                                  final String adLink =
+                                                      adsData.adLink ?? "";
+                                                  const String prefix =
+                                                      "https://www.wakafridi.com/";
+
+                                                  // Check if the link has the desired prefix
+                                                  if (!adLink
+                                                      .startsWith(prefix)) {
+                                                    // If not, concatenate the prefix to the link
+                                                    final Uri linkUri =
+                                                        Uri.parse(
+                                                            prefix + adLink);
+                                                    await launch(
+                                                        linkUri.toString());
+                                                  } else {
+                                                    // If it already has the prefix, launch the link as is
+                                                    await launch(adLink);
+                                                  }
                                                 },
                                                 child: Text(
                                                   adsData.adLink ?? "",

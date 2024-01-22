@@ -4,6 +4,7 @@ import 'package:api_project/components/Colors.dart';
 import 'package:api_project/components/Drop_Down_Menu.dart';
 import 'package:api_project/components/Features_products_widget.dart';
 import 'package:api_project/components/Get_in_Touch.dart';
+import 'package:api_project/components/Item_Search_Delegate.dart';
 import 'package:api_project/components/Latest_products_widget.dart';
 import 'package:api_project/components/My_Drawer.dart';
 import 'package:api_project/data/Responces/Status.dart';
@@ -39,6 +40,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late SwiperController _swiperController;
   final ScrollController _scrollController = ScrollController();
+  final TextEditingController _searchController = TextEditingController();
+  List<Items_data> _filteredItemList = [];
   HomeViewModel homeviewmodel = HomeViewModel();
 
   @override
@@ -53,12 +56,19 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Fashion Store"),
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.only(right: 10),
-            child: Icon(
-              Icons.search,
-              size: 30,
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: ItemSearchDelegate(
+                    itemList: _filteredItemList,
+                  ),
+                );
+              },
             ),
           )
         ],
@@ -151,6 +161,13 @@ class _HomePageState extends State<HomePage> {
     required List<Items_data> itemList,
     required List<Blogs_data> blogList,
   }) {
+    // Filter items based on the search query
+    _filteredItemList = itemList.where((item) {
+      return item.itemName!
+          .toLowerCase()
+          .contains(_searchController.text.toLowerCase());
+    }).toList();
+
     final provider = Provider.of<ProviderController>(context, listen: false);
     Future.delayed(Duration.zero, () {
       final userViewModel = context.read<User_view_Model>();
@@ -256,7 +273,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                   title: GestureDetector(
                     onTap: () async {
-                      await provider.launchwhatsappURL();
+                      await provider
+                          .launchwhatsappURLwithphone(storelist.s10 ?? " ");
                     },
                     child: Text(
                       storelist.s10 ?? " ",
@@ -515,7 +533,7 @@ class _HomePageState extends State<HomePage> {
                           MaterialPageRoute(
                             builder: (context) => Details_page(
                               store: storelist,
-                              item: itemList[index], // Pass the selected item
+                              item: product, // Pass the selected item
                             ),
                           ),
                         );

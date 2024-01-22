@@ -13,6 +13,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Contact_page extends StatefulWidget {
   final text;
@@ -358,12 +359,12 @@ class _Blogs_SceenState extends State<Contact_page> {
                             Consumer<ValidationProvider>(
                               builder: (context, value, child) {
                                 return Text_Field(
-                                  errorttext: value.name.error,
-                                  controller: messageprovider.namecontorller,
+                                  errorttext: value.NAME.error,
+                                  controller: messageprovider.Namecontorller,
                                   labeltext: "Your Name",
                                   hinttext: "Enter your name",
                                   onchange: (value) {
-                                    messageprovider.validateName(value);
+                                    messageprovider.validatemessagename(value);
                                   },
                                 );
                               },
@@ -372,12 +373,12 @@ class _Blogs_SceenState extends State<Contact_page> {
                             Consumer<ValidationProvider>(
                               builder: (context, value, child) {
                                 return Text_Field(
-                                  errorttext: value.email.error,
-                                  controller: messageprovider.emailcontroller,
+                                  errorttext: value.Email.error,
+                                  controller: messageprovider.Emailcontorller,
                                   labeltext: "Your email",
                                   hinttext: "enter you email",
                                   onchange: (value) {
-                                    messageprovider.validateEmail(value);
+                                    messageprovider.validatemeesageemail(value);
                                   },
                                 );
                               },
@@ -387,8 +388,8 @@ class _Blogs_SceenState extends State<Contact_page> {
                               builder: (context, value, child) {
                                 return Text_Field(
                                   maxline: 3,
-                                  errorttext: value.message.error,
-                                  controller: messageprovider.messagecontorller,
+                                  errorttext: value.Massage.error,
+                                  controller: messageprovider.Messagecontorller,
                                   labeltext: "Enter your message",
                                   hinttext: "enter your message",
                                   onchange: (value) {
@@ -404,7 +405,18 @@ class _Blogs_SceenState extends State<Contact_page> {
                                   utils.Show_Flushbar_Error_Message(
                                       "Please fill the fields", context);
                                 } else {
-                                  provider.openGmail(store.s67 ?? "");
+                                  String emailto = store.s67 ?? "";
+                                  String name =
+                                      messageprovider.Namecontorller.text;
+
+                                  String message =
+                                      messageprovider.Messagecontorller.text;
+                                  String defaultEmailSubject = "Support";
+                                  String bodymessage =
+                                      "Name: $name\n Message: $message";
+                                  String emailLaunchUri =
+                                      'mailto:$emailto ?subject=$defaultEmailSubject&body=$bodymessage';
+                                  launch(emailLaunchUri);
                                 }
                               },
                               style: ElevatedButton.styleFrom(

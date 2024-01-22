@@ -6,22 +6,30 @@ class ValidationProvider extends ChangeNotifier {
   late validaitonitem _address = validaitonitem(null, null);
   late validaitonitem _whatsapp = validaitonitem(null, null);
   late validaitonitem _email = validaitonitem(null, null);
+
+  //send message
+  late validaitonitem _Name = validaitonitem(null, null);
+  late validaitonitem _Email = validaitonitem(null, null);
   late validaitonitem _Message = validaitonitem(null, null);
 
   validaitonitem get name => _name;
   validaitonitem get address => _address;
   validaitonitem get whatsapp => _whatsapp;
   validaitonitem get email => _email;
-  validaitonitem get message => _Message;
+  //send message
+  validaitonitem get NAME => _Name;
+  validaitonitem get Email => _Email;
+  validaitonitem get Massage => _Message;
 
 //Controllers
   final namecontorller = TextEditingController();
   final adresscontorller = TextEditingController();
-  final messagecontorller = TextEditingController();
-
   final whatappcontroller = TextEditingController();
-
   final emailcontroller = TextEditingController();
+  //send message
+  final Messagecontorller = TextEditingController();
+  final Namecontorller = TextEditingController();
+  final Emailcontorller = TextEditingController();
 
   //dispsoe the controller
   void disposeControllers() {
@@ -29,7 +37,9 @@ class ValidationProvider extends ChangeNotifier {
     adresscontorller.dispose();
     whatappcontroller.dispose();
     namecontorller.dispose();
-    messagecontorller.dispose();
+    Messagecontorller.dispose();
+    Emailcontorller.dispose();
+    Namecontorller.dispose();
   }
 
   // Name validation function
@@ -75,13 +85,32 @@ class ValidationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Your validation function
+  // SEND MESSAGE
   void validateMessage(String value) {
     if (value.isEmpty) {
       _Message = validaitonitem(value, "Enter your message");
     } else {
-      _Message =
-          validaitonitem(value, null); 
+      _Message = validaitonitem(value, null);
+    }
+    notifyListeners();
+  }
+
+  void validatemessagename(String value) {
+    if (value.isEmpty) {
+      _Name = validaitonitem(value, "enter your name");
+    } else {
+      _Name = validaitonitem(value, null);
+    }
+    notifyListeners();
+  }
+
+  void validatemeesageemail(String value) {
+    if (value.isEmpty) {
+      _Email = validaitonitem(value, "enter your email");
+    } else if (!isValidEmail(value)) {
+      _Email = validaitonitem(value, 'Enter a valid email address');
+    } else {
+      _Email = validaitonitem(value, null);
     }
     notifyListeners();
   }
@@ -104,7 +133,7 @@ class ValidationProvider extends ChangeNotifier {
   }
 
   bool get ismessageFormValid {
-    if (_name.Value != null && _Message.Value != null && _email.Value != null) {
+    if (_Name.Value != null && _Message.Value != null && _Email.Value != null) {
       return true;
     } else {
       return false;
