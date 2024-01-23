@@ -148,7 +148,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         },
                         child: const ListTile(
                           leading: Icon(Icons.person),
-                          title: Text("Login"),
+                          title: Text("Admin panel"),
                         ),
                       ),
                     );
@@ -202,6 +202,13 @@ class _MyDrawerState extends State<MyDrawer> {
                         icon: FontAwesomeIcons.snapchat,
                         color: AppColors.yellow,
                       ),
+                      SocialMediaIcon(
+                        ontap: () {
+                          // Handle pantrest icon tap
+                        },
+                        icon: FontAwesomeIcons.pinterest,
+                        color: AppColors.red,
+                      )
                     ],
                   ),
                 ),
@@ -227,7 +234,14 @@ class _MyDrawerState extends State<MyDrawer> {
                     SocialMediaIcon(
                         icon: FontAwesomeIcons.o,
                         color: AppColors.accentColor,
-                        ontap: () {})
+                        ontap: () {}),
+                    SocialMediaIcon(
+                      ontap: () {
+                        // Handle pantrest icon tap
+                      },
+                      icon: FontAwesomeIcons.whatsapp,
+                      color: AppColors.accentColor,
+                    ),
                   ],
                 ),
                 const Gutter(),

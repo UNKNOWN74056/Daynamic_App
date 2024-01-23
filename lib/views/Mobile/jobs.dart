@@ -155,6 +155,11 @@ class _Jobs_pageState extends State<Jobs_page> {
                             title: jobdata.jobTitle ?? "",
                             jobCodeColor:
                                 provider.getColorFromName(store.s66 ?? ""),
+                            jobstartdate: jobdata.jobDate ?? "",
+                            jobenddate: jobdata.jobLastdate ?? "",
+                            onTap: () {
+                              provider.openGmail(store.s48 ?? "");
+                            },
                           ),
                         );
                       },
@@ -195,7 +200,7 @@ class _Jobs_pageState extends State<Jobs_page> {
                         'Contact',
                         'Blog',
                         'Jobs',
-                        'Offers'
+                        'Offers',
                       ],
                       linkCallbacks: [
                         () {

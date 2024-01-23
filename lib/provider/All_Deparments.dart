@@ -197,4 +197,20 @@ class ProviderController extends ChangeNotifier {
       throw 'Could not launch Gmail';
     }
   }
+  //REMAINING DAYS FUNCTION
+  int remainingDays(String endDate) {
+    if (endDate == "NA") {
+      return 0;
+    }
+
+    try {
+      DateTime endDateTime = DateTime.parse(endDate);
+      DateTime now = DateTime.now();
+      Duration difference = endDateTime.difference(now);
+      return difference.inDays;
+    } catch (e) {
+      print("Error parsing date: $endDate");
+      return 0;
+}
+}
 }

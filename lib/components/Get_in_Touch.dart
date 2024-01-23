@@ -17,17 +17,17 @@ class GetInTouch extends StatelessWidget {
 
   final List<VoidCallback> linkCallbacks;
 
-  const GetInTouch({
-    super.key,
-    required this.imageAssetPath,
-    required this.description,
-    required this.linkTitles,
-    required this.linkCallbacks,
-    required this.address,
-    required this.phone,
-    required this.fotter,
-    required this.email,a
-  });
+  const GetInTouch(
+      {super.key,
+      required this.imageAssetPath,
+      required this.description,
+      required this.linkTitles,
+      required this.linkCallbacks,
+      required this.address,
+      required this.phone,
+      required this.fotter,
+      required this.email,
+      a});
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +156,21 @@ class GetInTouch extends StatelessWidget {
                       SocialMediaIcon(
                           icon: FontAwesomeIcons.o,
                           color: AppColors.accentColor,
-                          ontap: () {})
+                          ontap: () {}),
+                      SocialMediaIcon(
+                        ontap: () {
+                          // Handle pantrest icon tap
+                        },
+                        icon: FontAwesomeIcons.whatsapp,
+                        color: AppColors.accentColor,
+                      ),
+                      SocialMediaIcon(
+                        ontap: () {
+                          // Handle pantrest icon tap
+                        },
+                        icon: FontAwesomeIcons.pinterest,
+                        color: AppColors.red,
+                      ),
                     ],
                   ),
                 ),

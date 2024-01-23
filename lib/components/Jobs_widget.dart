@@ -1,7 +1,8 @@
-import 'package:api_project/components/Colors.dart';
+import 'package:api_project/provider/All_Deparments.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gutter/flutter_gutter.dart';
+import 'package:provider/provider.dart';
 
 class JobWidget extends StatelessWidget {
   final String imagepath;
@@ -9,6 +10,9 @@ class JobWidget extends StatelessWidget {
   final String title;
   final String department;
   final Color jobCodeColor;
+  final String jobstartdate;
+  final String jobenddate;
+  final VoidCallback onTap;
 
   const JobWidget({
     super.key,
@@ -17,16 +21,34 @@ class JobWidget extends StatelessWidget {
     required this.department,
     required this.jobCodeColor,
     required this.title,
+    required this.jobstartdate,
+    required this.jobenddate,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ProviderController>(context, listen: false);
+
+    // Use the remainingDays function
+    int remainingDays = provider.remainingDays(jobenddate);
+
+    String finaljobtext = "";
+
+    if (remainingDays == 0) {
+      finaljobtext = "Today is last day to apply:";
+    } else if (remainingDays > 0) {
+      finaljobtext = " $remainingDays days left.";
+    } else {
+      finaljobtext = "Job opning closed.";
+    }
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(12.0),
           boxShadow: [
             BoxShadow(
@@ -69,6 +91,44 @@ class JobWidget extends StatelessWidget {
             const SizedBox(width: 4),
             Text(department),
             const SizedBox(height: 4),
+            const Gutter(),
+            Text(
+              "Job Posted Date:",
+              style: TextStyle(color: jobCodeColor, fontSize: 20),
+            ),
+            const Gutter(),
+            Text(jobstartdate),
+            const Gutter(),
+            Text(
+              "Job Last Date:",
+              style: TextStyle(color: jobCodeColor, fontSize: 20),
+            ),
+            const Gutter(),
+            Text(jobenddate),
+            const Gutter(),
+            Text(
+              "Remaining Days:",
+              style: TextStyle(color: jobCodeColor, fontSize: 20),
+            ),
+            const Gutter(),
+            Text(
+              (finaljobtext),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+            const Gutter(),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                backgroundColor: jobCodeColor,
+                foregroundColor: Colors.white,
+              ),
+              onPressed: (remainingDays += 1) > 0
+                  ? onTap
+                  : null, // Disable button when remaining days are 0 or negative
+              child: const Text("Apply"),
+            ),
           ],
         ),
       ),

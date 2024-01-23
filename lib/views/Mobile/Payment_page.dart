@@ -153,6 +153,23 @@ class _Payment_pageState extends State<Payment_page> {
                               },
                             ),
                             const Gutter(),
+                            // DEFULT TEXT
+                            Consumer<ValidationProvider>(
+                              builder: (context, value, child) {
+                                return Text_Field(
+                                  hinttext: "Enter message if any",
+                                  labeltext: "Enter message if any",
+                                  controller:
+                                      validateprovider.fromtextcontroller,
+                                  onchange: (val) {
+                                    validateprovider.validateMessage(val);
+                                  },
+                                  maxline: 3,
+                                );
+                              },
+                            ),
+                            const Gutter(),
+                            const Gutter(),
                             //DROP DOWN MENU SECTION
                             Container(
                               padding: const EdgeInsets.all(8),
@@ -278,6 +295,8 @@ class _Payment_pageState extends State<Payment_page> {
                                       validateprovider.whatappcontroller.text;
                                   String email =
                                       validateprovider.emailcontroller.text;
+                                  String fromtext =
+                                      validateprovider.fromtextcontroller.text;
                                   int quantity = paymentprovider.quantity;
                                   String selectedPayment =
                                       provider.selectedpayment ?? "";
@@ -286,11 +305,10 @@ class _Payment_pageState extends State<Payment_page> {
                                       .firstValue; // Get the selected payment method
                                   String purchasecontract =
                                       isCashPayment ? "lease" : "Cash";
-
                                   String defaultEmailSubject =
                                       "Order on ${store.s9} ";
                                   String defaultEmailBody =
-                                      "Item Name: ${widget.item.itemName}\nCustomer Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email\nPayment:$selectedPayment\nQuantity:$quantity\nPurchase Contract: $purchasecontract";
+                                      "Item Name: ${widget.item.itemName}\nCustomer Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email \nDiscription: $fromtext \n \nPayment:$selectedPayment\nQuantity:$quantity\nPurchase Mode: $purchasecontract \nProduct Link: $servalUrl en/product/ ${widget.item.itemId} \n \nConfrim order on Whatsapp: https://api.whatsapp.comsend?phone=+923339688283&text=hallo "; //\n i have order of Quantity:$quantity of  Item Name: ${widget.item.itemName}\n \nProduct Link:$servalUrl \nplease confrim with us :";
 
                                   String emailLaunchUri =
                                       'mailto:$emailto ?subject=$defaultEmailSubject&body=$defaultEmailBody';
@@ -324,6 +342,8 @@ class _Payment_pageState extends State<Payment_page> {
                                       validateprovider.namecontorller.text;
                                   String address =
                                       validateprovider.adresscontorller.text;
+                                  String fromtext =
+                                      validateprovider.fromtextcontroller.text;
                                   String whatsapp =
                                       validateprovider.whatappcontroller.text;
                                   String email =
@@ -335,7 +355,9 @@ class _Payment_pageState extends State<Payment_page> {
 
                                   String defaultWhatsAppMessage =
                                       "How to Buy.\n"
-                                      "Name :  ${widget.item.itemName ?? ""}\nprice: ${widget.item.itemPrice}\nName: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email\nPurchase Mode: $purchasecontract";
+                                      "Name :  ${widget.item.itemName ?? ""}\nprice: ${widget.item.itemPrice}\nName: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email\nPurchase Mode: $purchasecontract \nDiscription: $fromtext \n \nProduct Link: $servalUrl"
+                                      'en/product/'
+                                      "${widget.item.itemId}";
 
                                   await provider.whatapplunch(
                                       phoneNumber: store.s68 ?? '',

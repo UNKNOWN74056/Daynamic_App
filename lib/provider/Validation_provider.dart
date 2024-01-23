@@ -6,30 +6,43 @@ class ValidationProvider extends ChangeNotifier {
   late validaitonitem _address = validaitonitem(null, null);
   late validaitonitem _whatsapp = validaitonitem(null, null);
   late validaitonitem _email = validaitonitem(null, null);
+  late validaitonitem _fromtext = validaitonitem(null, null);
 
   //send message
   late validaitonitem _Name = validaitonitem(null, null);
   late validaitonitem _Email = validaitonitem(null, null);
   late validaitonitem _Message = validaitonitem(null, null);
+  late validaitonitem _Fromtext = validaitonitem(null, null);
+
 
   validaitonitem get name => _name;
   validaitonitem get address => _address;
   validaitonitem get whatsapp => _whatsapp;
   validaitonitem get email => _email;
+  validaitonitem get fromtext => _fromtext;
+
+
   //send message
   validaitonitem get NAME => _Name;
   validaitonitem get Email => _Email;
   validaitonitem get Massage => _Message;
+  validaitonitem get Fromtext => _Fromtext;
+
 
 //Controllers
   final namecontorller = TextEditingController();
   final adresscontorller = TextEditingController();
   final whatappcontroller = TextEditingController();
   final emailcontroller = TextEditingController();
+  final fromtextcontroller = TextEditingController();
+
+
   //send message
   final Messagecontorller = TextEditingController();
   final Namecontorller = TextEditingController();
   final Emailcontorller = TextEditingController();
+  final Fromtextcontorller = TextEditingController();
+
 
   //dispsoe the controller
   void disposeControllers() {
@@ -40,6 +53,8 @@ class ValidationProvider extends ChangeNotifier {
     Messagecontorller.dispose();
     Emailcontorller.dispose();
     Namecontorller.dispose();
+    Fromtextcontorller.dispose();
+
   }
 
   // Name validation function
@@ -137,6 +152,6 @@ class ValidationProvider extends ChangeNotifier {
       return true;
     } else {
       return false;
-    }
+      }
   }
 }
