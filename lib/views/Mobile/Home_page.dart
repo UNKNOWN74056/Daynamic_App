@@ -59,17 +59,16 @@ class _HomePageState extends State<HomePage> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10),
-            child: IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {
-                showSearch(
-                  context: context,
-                  delegate: ItemSearchDelegate(
-                    itemList: _filteredItemList,
-                  ),
-                );
-              },
-            ),
+            child:   IconButton(
+            icon: Icon(Icons.search,),
+            onPressed: () async {
+              final result = await showSearch(
+                context: context,
+                delegate: ItemSearchDelegate(itemList: _filteredItemList),
+              );
+              // Handle search result if needed
+            },
+          ),
           )
         ],
       ),

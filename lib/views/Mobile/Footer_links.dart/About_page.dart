@@ -155,7 +155,7 @@ class _Blogs_SceenState extends State<About_Us_page> {
                             )),
                         IconButton(
                             onPressed: () {
-                              provider.launchinstagramURL();
+                              provider.launchInstagramURL();
                             },
                             icon: const Icon(
                               FontAwesomeIcons.instagram,

@@ -1,8 +1,10 @@
 import 'package:api_project/model/Items_model.dart';
+import 'package:api_project/model/Store_Model.dart';
+import 'package:api_project/views/Mobile/Category/Category_Detail_page.dart.dart';
 
 import 'package:flutter/material.dart';
 
-class ItemSearchDelegate extends SearchDelegate<Items_data> {
+class ItemSearchDelegate extends SearchDelegate<String> {
   final List<Items_data> itemList;
 
   ItemSearchDelegate({
@@ -21,50 +23,73 @@ class ItemSearchDelegate extends SearchDelegate<Items_data> {
     ];
   }
 
-  @override
+  // @override
+  // Widget buildLeading(BuildContext context) {
+  //   return IconButton(
+  //     icon: const Icon(Icons.arrow_back),
+  //     onPressed: () {
+  //       Navigator.pop(context);
+  //       // close(context,  null);
+  //     },
+  //   );
+  // }
+
+   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.arrow_back),
+      icon: Icon(Icons.arrow_back),
       onPressed: () {
-        Navigator.pop(context);
-        // close(context,  null);
+        close(context, "");
       },
     );
   }
 
-  @override
+
+  // @override
+  // Widget buildResults(BuildContext context) {
+  //   return buildSearchResults(itemList);
+  // }
+
+   @override
   Widget buildResults(BuildContext context) {
-    return buildSearchResults(itemList);
+    // Implement how to display the search results
+    return Container(); // Placeholder, replace with actual result widget
   }
 
   @override
-  Widget buildSuggestions(BuildContext context) {
-    return buildSearchResults(itemList);
-  }
+ Widget buildSuggestions(BuildContext context) {
+  final suggestionList = query.isEmpty
+      ? []
+      : itemList
+          .where((item) =>
+              item.itemType!.toLowerCase().contains(query.toLowerCase()))
+          .toList();
 
-  Widget buildSearchResults(List<Items_data> itemList) {
-    // Implement the UI for displaying search results
-    return ListView.builder(
-      itemCount: itemList.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(itemList[index].itemName ?? ""),
-          // Handle tapping on the search result item
-          onTap: () {
-            // Implement the action when a search result is tapped
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => Details_page(
-            //       // Pass the selected item
-            //       store: store,
-            //       item: itemList[index],
-            //     ),
-            //   ),
-            // );
-          },
-        );
-      },
-    );
-  }
+  // Implement the UI for displaying search results
+  return ListView.builder(
+    itemCount: suggestionList.length,
+    itemBuilder: (context, index) {
+      return ListTile(
+         title: Text(suggestionList[index].itemName ?? ""),
+        subtitle: Text(suggestionList[index].itemType ?? ""),
+        // Handle tapping on the search result item
+        onTap: () {
+          // Implement the action when a search result is tapped
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Category_details_page(
+                // Pass the selected item
+                selectedItem: suggestionList[index],
+                itemList: itemList,
+                store: Stores(),
+              ),
+            ),
+          );
+        },
+      );
+    },
+  );
 }
+
+  }

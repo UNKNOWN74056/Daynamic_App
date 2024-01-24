@@ -367,7 +367,7 @@ class _Details_pageState extends State<Details_page> {
                     )),
                 IconButton(
                     onPressed: () {
-                      provider.launchinstagramURL();
+                      provider.launchInstagramURL();
                     },
                     icon: const Icon(
                       FontAwesomeIcons.instagram,

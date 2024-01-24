@@ -27,7 +27,8 @@ class GetInTouch extends StatelessWidget {
       required this.phone,
       required this.fotter,
       required this.email,
-      a});
+      imag
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -114,66 +115,113 @@ class GetInTouch extends StatelessWidget {
                       icon: FontAwesomeIcons.youtube,
                       color: AppColors.red,
                     ),
-                    SocialMediaIcon(
-                      ontap: () {},
-                      icon: FontAwesomeIcons.twitter,
-                      color: Colors.blue,
-                    ),
-                    SocialMediaIcon(
+                     SocialMediaIcon(
+                        ontap: () async {
+                          // Handle TikTok icon tap
+                          await provider.launchTiktokURL();
+                        },
+                        icon: FontAwesomeIcons.tiktok,
+                        color: AppColors.textColor,
+                      ),
+                       SocialMediaIcon(
+                        ontap: () async {
+                          await provider.launchSnapchatURL();
+                        },
+                        icon: FontAwesomeIcons.snapchat,
+                        color: AppColors.yellow,
+                      ),
+                       SocialMediaIcon(
                       ontap: () async {
-                        await provider.launchinstagramURL();
+                        await provider.launchInstagramURL();
                       },
                       icon: FontAwesomeIcons.instagram,
                       color: AppColors.red,
                     ),
                     SocialMediaIcon(
-                      ontap: () {},
-                      icon: FontAwesomeIcons.linkedin,
-                      color: AppColors.darkblue,
-                    ),
-                    SocialMediaIcon(
                         icon: FontAwesomeIcons.weixin,
                         color: AppColors.accentColor,
-                        ontap: () {}),
+                        ontap: () async {
+                        provider.launchvchatURL();
+                        },
+                        ),
                     SocialMediaIcon(
-                        icon: FontAwesomeIcons.amazon,
-                        color: AppColors.textColor,
-                        ontap: () {}),
+                    ontap: () async {
+                          await provider.launchtwiURL();
+                        },
+                      icon: FontAwesomeIcons.twitter,
+                      color: Colors.blue,
+                    ),
+                   
                   ],
                 ),
                 Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                       SocialMediaIcon(
+                       ontap: () async {
+                          await provider.launchlinkURL();
+                        },
+                      icon: FontAwesomeIcons.linkedin,
+                      color: AppColors.darkblue,
+                    ),
+                      SocialMediaIcon(
+                       ontap: () async {
+                          await provider.launcholxURL();
+                        },
+                      icon: FontAwesomeIcons.o,
+                      color: Colors.green,
+                    ),
                       SocialMediaIcon(
                           icon: FontAwesomeIcons.ebay,
                           color: AppColors.textColor,
-                          ontap: () {}),
+                           ontap: () async {
+                          await provider.launchebyURL();
+                        },
+                          ),
+                      GestureDetector(
+                        onTap: ()async{
+                         await provider.launchaliURL();
+                        },
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage("assets/aliexpres.png"),
+                        radius: 13,),
+                      ),
+                       SocialMediaIcon(
+                          icon: FontAwesomeIcons.amazon,
+                          color: Colors.black,
+                           ontap: () async {
+                          await provider.launchAmURL();
+                        },
+                          ),
                       SocialMediaIcon(
                           icon: FontAwesomeIcons.d,
                           color: AppColors.orange,
-                          ontap: () {}),
-                      SocialMediaIcon(
-                          icon: FontAwesomeIcons.o,
-                          color: AppColors.accentColor,
-                          ontap: () {}),
-                      SocialMediaIcon(
-                        ontap: () {
-                          // Handle pantrest icon tap
+                           ontap: () async {
+                          await provider.launchDrazURL();
                         },
-                        icon: FontAwesomeIcons.whatsapp,
-                        color: AppColors.accentColor,
-                      ),
-                      SocialMediaIcon(
-                        ontap: () {
-                          // Handle pantrest icon tap
+                          ),
+                      
+                    ],
+                  ),
+                ),
+                         Center(child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                            children: [    SocialMediaIcon(
+                        ontap: () async {
+                          await provider.launchpriURL();
                         },
                         icon: FontAwesomeIcons.pinterest,
                         color: AppColors.red,
                       ),
-                    ],
-                  ),
-                ),
+                      SocialMediaIcon(
+                         ontap: () async {
+                          await provider.launchwhatsappURL();
+                        },
+                        icon: FontAwesomeIcons.whatsapp,
+                        color: AppColors.accentColor,
+                      ),],
+                )),
                 const Gutter(),
                 Row(
                   children: [

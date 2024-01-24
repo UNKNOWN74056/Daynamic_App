@@ -167,82 +167,128 @@ class _MyDrawerState extends State<MyDrawer> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       // ... social media icons
-                      SocialMediaIcon(
+                    SocialMediaIcon(
+                      ontap: () async {
+                        await provider.launchFacebookURL();
+                      },
+                      icon: FontAwesomeIcons.facebook,
+                      color: Colors.blue,
+                    ),
+                    SocialMediaIcon(
+                      ontap: () async {
+                        await provider.launchyoutubeURL();
+                      },
+                      icon: FontAwesomeIcons.youtube,
+                      color: AppColors.red,
+                    ),
+                     SocialMediaIcon(
                         ontap: () async {
-                          await provider.launchFacebookURL();
-                        },
-                        icon: FontAwesomeIcons.facebook,
-                        color: AppColors.primaryColor,
-                      ),
-                      SocialMediaIcon(
-                        ontap: () async {
-                          await provider.launchyoutubeURL();
-                        },
-                        icon: FontAwesomeIcons.youtube,
-                        color: AppColors.red,
-                      ),
-                      SocialMediaIcon(
-                        ontap: () async {
-                          await provider.launchinstagramURL();
-                        },
-                        icon: FontAwesomeIcons.instagram,
-                        color: AppColors.red,
-                      ),
-                      SocialMediaIcon(
-                        ontap: () {
                           // Handle TikTok icon tap
+                          await provider.launchTiktokURL();
                         },
                         icon: FontAwesomeIcons.tiktok,
                         color: AppColors.textColor,
                       ),
-                      SocialMediaIcon(
-                        ontap: () {
-                          // Handle Snapchat icon tap
+                       SocialMediaIcon(
+                        ontap: () async {
+                          await provider.launchSnapchatURL();
                         },
                         icon: FontAwesomeIcons.snapchat,
                         color: AppColors.yellow,
                       ),
-                      SocialMediaIcon(
-                        ontap: () {
-                          // Handle pantrest icon tap
-                        },
-                        icon: FontAwesomeIcons.pinterest,
-                        color: AppColors.red,
-                      )
+                       SocialMediaIcon(
+                      ontap: () async {
+                        await provider.launchInstagramURL();
+                      },
+                      icon: FontAwesomeIcons.instagram,
+                      color: AppColors.red,
+                    ),      
                     ],
                   ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SocialMediaIcon(
+                     SocialMediaIcon(
                         icon: FontAwesomeIcons.weixin,
                         color: AppColors.accentColor,
-                        ontap: () {}),
-                    SocialMediaIcon(
-                        icon: FontAwesomeIcons.amazon,
-                        color: AppColors.textColor,
-                        ontap: () {}),
-                    SocialMediaIcon(
-                        icon: FontAwesomeIcons.ebay,
-                        color: AppColors.textColor,
-                        ontap: () {}),
-                    SocialMediaIcon(
-                        icon: FontAwesomeIcons.d,
-                        color: Colors.orange,
-                        ontap: () {}),
-                    SocialMediaIcon(
-                        icon: FontAwesomeIcons.o,
-                        color: AppColors.accentColor,
-                        ontap: () {}),
-                    SocialMediaIcon(
-                      ontap: () {
-                        // Handle pantrest icon tap
-                      },
-                      icon: FontAwesomeIcons.whatsapp,
-                      color: AppColors.accentColor,
+                        ontap: () async {
+                        provider.launchvchatURL();
+                        },
+                        ),
+                      SocialMediaIcon(
+                        ontap: () async {
+                          await provider.launchtwiURL();
+                        },
+                      icon: FontAwesomeIcons.twitter,
+                      color: Colors.blue,
                     ),
+                     SocialMediaIcon(
+                       ontap: () async {
+                          await provider.launcholxURL();
+                        },
+                      icon: FontAwesomeIcons.o,
+                      color: Colors.green,
+                    ),
+                     SocialMediaIcon(
+                       ontap: () async {
+                          await provider.launchlinkURL();
+                        },
+                      icon: FontAwesomeIcons.linkedin,
+                      color: AppColors.darkblue,
+                    ),
+                      SocialMediaIcon(
+                          icon: FontAwesomeIcons.ebay,
+                          color: AppColors.textColor,
+                           ontap: () async {
+                          await provider.launchebyURL();
+                        },
+                          ),
+                      GestureDetector(
+                        onTap: ()async{
+                         await provider.launchaliURL();
+                        },
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage("assets/aliexpres.png"),
+                        radius: 13,),
+                      ),
+                    
                   ],
+
+                ),
+                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                      SocialMediaIcon(
+                          icon: FontAwesomeIcons.amazon,
+                          color: Colors.black,
+                           ontap: () async {
+                          await provider.launchAmURL();
+                        },
+                          ),
+                      SocialMediaIcon(
+                          icon: FontAwesomeIcons.d,
+                          color: AppColors.orange,
+                           ontap: () async {
+                          await provider.launchDrazURL();
+                        },
+                          ),
+                          SocialMediaIcon(
+                        ontap: () async {
+                          await provider.launchpriURL();
+                        },
+                        icon: FontAwesomeIcons.pinterest,
+                        color: AppColors.red,
+                      ),
+                      SocialMediaIcon(
+                         ontap: () async {
+                          await provider.launchwhatsappURL();
+                        },
+                        icon: FontAwesomeIcons.whatsapp,
+                        color: AppColors.accentColor,
+                      ),
+                   
+                      ],
                 ),
                 const Gutter(),
                 Text(

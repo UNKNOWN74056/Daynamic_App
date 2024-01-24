@@ -34,13 +34,13 @@ class utils {
 
   //////////////////////////////////////
   // Show Flutter toast message
-  static void showToastMessage(String message) {
+  static void showToastMessage(String message, Color backgroundColor) {
     Fluttertoast.showToast(
       msg: message,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 1,
-      backgroundColor: Colors.green,
+      backgroundColor: backgroundColor,
       textColor: Colors.white,
       fontSize: 16.0,
     );

@@ -100,7 +100,7 @@ class ProviderController extends ChangeNotifier {
 
     notifyListeners();
   }
-
+            /// FACEBOOK 01
   Future<void> launchFacebookURL() async {
     const facebookURL =
         'https://web.facebook.com/Gamezone44/?_rdc=1&_rdr'; // Replace with your Facebook page URL
@@ -108,21 +108,217 @@ class ProviderController extends ChangeNotifier {
     if (await canLaunchUrl(facebookUri)) {
       await launchUrl(facebookUri);
     } else {
-      utils.showToastMessage("Could not load the page!");
+      utils.showToastMessage("Could not load the page!", Colors.red);
     }
   }
 
-  Future<void> launchinstagramURL() async {
-    const instagrameURL =
-        'https://www.instagram.com/gamezonesajid/'; // Replace with your Facebook page URL
-    final Uri instagramUri = Uri.parse(instagrameURL);
+  // Future<void> launchinstagramURL() async {
+  //   const instagrameURL =
+  //       'https://www.instagram.com/gamezonesajid/'; // Replace with your Facebook page URL
+  //   final Uri instagramUri = Uri.parse(instagrameURL);
+  //   if (await canLaunchUrl(instagramUri)) {
+  //     await launchUrl(instagramUri);
+  //   } else {
+  //     utils.showToastMessage("Could not load the page!");
+  //   }
+  // }
+
+  //////////////////////// 02
+  Future<void> launchInstagramURL() async {
+  const instagramURL = 'https://www.instagram.com/gamezonesajid/';
+  final Uri instagramUri = Uri.parse(instagramURL);
+
+  if (instagramUri.toString().isNotEmpty) {
     if (await canLaunchUrl(instagramUri)) {
       await launchUrl(instagramUri);
     } else {
-      utils.showToastMessage("Could not load the page!");
+      utils.showToastMessage("Could not load the page!", Colors.red);
     }
+  } else {
+    utils.showToastMessage("Instagram link is empty!", Colors.red);
   }
+}
+/////////////////////TIKTOK 03
+Future<void> launchTiktokURL() async {
+  const tiktokURL = '';
+  final Uri tiktokUri = Uri.parse(tiktokURL);
 
+  if (tiktokUri.toString().isNotEmpty) {
+    if (await canLaunchUrl(tiktokUri)) {
+      await launchUrl(tiktokUri);
+    } else {
+      utils.showToastMessage("Could not load the page!", Colors.red);
+    }
+  } else {
+    utils.showToastMessage("TikTok link is empty!", Colors.red);
+  }
+}
+/////////////////////Snap CHAT 04
+Future<void> launchSnapchatURL() async {
+  const snapchatURL = '';
+  final Uri snapchatUri = Uri.parse(snapchatURL);
+
+  if (snapchatUri.toString().isNotEmpty) {
+    if (await canLaunchUrl(snapchatUri)) {
+      await launchUrl(snapchatUri);
+    } else {
+      utils.showToastMessage("Could not load the page!", Colors.red);
+    }
+  } else {
+    utils.showToastMessage("SnapChat link is empty!", Colors.red);
+  }
+}
+
+///////////////////// Draz 05
+
+Future<void> launchDrazURL() async {
+  const drazURL = '';
+  final Uri drazUri = Uri.parse(drazURL);
+
+  if (drazUri.toString().isNotEmpty) {
+    if (await canLaunchUrl(drazUri)) {
+      await launchUrl(drazUri);
+    } else {
+      utils.showToastMessage("Could not load the page!", Colors.red);
+    }
+  } else {
+    utils.showToastMessage("Draz link is empty!", Colors.red);
+  }
+}
+
+//////////////// Amazon 06
+
+Future<void> launchAmURL() async {
+  const amURL = '';
+  final Uri amUri = Uri.parse(amURL);
+
+  if (amUri.toString().isNotEmpty) {
+    if (await canLaunchUrl(amUri)) {
+      await launchUrl(amUri);
+    } else {
+      utils.showToastMessage("Could not load the page!", Colors.red);
+    }
+  } else {
+    utils.showToastMessage("Amazon link is empty!", Colors.red);
+  }
+}
+
+//////////////// Amazon 09
+
+Future<void> launchebyURL() async {
+  const ebyURL = '';
+  final Uri ebyUri = Uri.parse(ebyURL);
+
+  if (ebyUri.toString().isNotEmpty) {
+    if (await canLaunchUrl(ebyUri)) {
+      await launchUrl(ebyUri);
+    } else {
+      utils.showToastMessage("Could not load the page!", Colors.red);
+    }
+  } else {
+    utils.showToastMessage("Ebay link is empty!", Colors.red);
+  }
+}
+
+//////////////// Amazon 10
+
+Future<void> launchlinkURL() async {
+  const linkURL = '';
+  final Uri linkUri = Uri.parse(linkURL);
+
+  if (linkUri.toString().isNotEmpty) {
+    if (await canLaunchUrl(linkUri)) {
+      await launchUrl(linkUri);
+    } else {
+      utils.showToastMessage("Could not load the page!", Colors.red);
+    }
+  } else {
+    utils.showToastMessage("Linkedln link is empty!", Colors.red);
+  }
+}
+
+//////////////// Amazon 11
+
+Future<void> launchaliURL() async {
+  const aliURL = '';
+  final Uri aliUri = Uri.parse(aliURL);
+
+  if (aliUri.toString().isNotEmpty) {
+    if (await canLaunchUrl(aliUri)) {
+      await launchUrl(aliUri);
+    } else {
+      utils.showToastMessage("Could not load the page!", Colors.red);
+    }
+  } else {
+    utils.showToastMessage("Ali Express/ Ali Baba link is empty!", Colors.red);
+  }
+}
+
+//////////////// Amazon 12
+
+Future<void> launchpriURL() async {
+  const priURL = '';
+  final Uri priUri = Uri.parse(priURL);
+
+  if (priUri.toString().isNotEmpty) {
+    if (await canLaunchUrl(priUri)) {
+      await launchUrl(priUri);
+    } else {
+      utils.showToastMessage("Could not load the page!", Colors.red);
+    }
+  } else {
+    utils.showToastMessage("Pinterest link is empty!", Colors.red);
+  }
+}
+
+Future<void> launchvchatURL() async {
+  const vcURL = '';
+  final Uri vcUri = Uri.parse(vcURL);
+
+  if (vcUri.toString().isNotEmpty) {
+    if (await canLaunchUrl(vcUri)) {
+      await launchUrl(vcUri);
+    } else {
+      utils.showToastMessage("Could not load the page!", Colors.red);
+    }
+  } else {
+    utils.showToastMessage("V Chat link is empty!", Colors.red);
+  }
+}
+
+//////////////// Amazon 11
+
+Future<void> launchtwiURL() async {
+  const twiURL = '';
+  final Uri twiUri = Uri.parse(twiURL);
+
+  if (twiUri.toString().isNotEmpty) {
+    if (await canLaunchUrl(twiUri)) {
+      await launchUrl(twiUri);
+    } else {
+      utils.showToastMessage("Could not load the page!", Colors.red);
+    }
+  } else {
+    utils.showToastMessage("Twitter link is empty!", Colors.red);
+  }
+}
+
+Future<void> launcholxURL() async {
+  const olxURL = '';
+  final Uri olxUri = Uri.parse(olxURL);
+
+  if (olxUri.toString().isNotEmpty) {
+    if (await canLaunchUrl(olxUri)) {
+      await launchUrl(olxUri);
+    } else {
+      utils.showToastMessage("Could not load the page!", Colors.red);
+    }
+  } else {
+    utils.showToastMessage("OLX link is empty!", Colors.red);
+  }
+}
+
+//////////////////////////// 07 
   Future<void> launchyoutubeURL() async {
     const youtubeURL =
         'https://www.youtube.com/@gamezonesajid1150'; // Replace with your Facebook page URL
@@ -130,10 +326,10 @@ class ProviderController extends ChangeNotifier {
     if (await canLaunchUrl(youtubeUri)) {
       await launchUrl(youtubeUri);
     } else {
-      utils.showToastMessage("Could not load the page!");
+      utils.showToastMessage("Could not load the page!", Colors.red);
     }
   }
-
+///////////////////////// 08
   Future<void> launchwhatsappURL() async {
     const whatsappURL =
         'https://api.whatsapp.com/send/?phone=%2B923339688283&text=Website+Support+Inquery&type=phone_number&app_absent=0'; // Replace with your Facebook page URL
@@ -141,7 +337,7 @@ class ProviderController extends ChangeNotifier {
     if (await canLaunchUrl(whatsappUri)) {
       await launchUrl(whatsappUri);
     } else {
-      utils.showToastMessage("Could not load the page!");
+      utils.showToastMessage("Could not load the page!", Colors.red);
     }
   }
 
@@ -157,7 +353,7 @@ class ProviderController extends ChangeNotifier {
     if (await canLaunchUrl(whatsappUri)) {
       await launchUrl(whatsappUri);
     } else {
-      utils.showToastMessage("Could not load the page!");
+      utils.showToastMessage("Could not load the page!", Colors.red);
     }
   }
 
@@ -170,7 +366,7 @@ class ProviderController extends ChangeNotifier {
     if (await canLaunch(whatsappUri.toString())) {
       await launch(whatsappUri.toString());
     } else {
-      utils.showToastMessage("No what app is install ");
+      utils.showToastMessage("No what app is install ", Colors.red);
     }
   }
 
@@ -181,7 +377,7 @@ class ProviderController extends ChangeNotifier {
     if (await canLaunch(googleUrl)) {
       await launch(googleUrl);
     } else {
-      utils.showToastMessage("No map sorry ");
+      utils.showToastMessage("No map sorry ", Colors.red);
     }
   }
 
@@ -213,4 +409,7 @@ class ProviderController extends ChangeNotifier {
       return 0;
 }
 }
+
+
+
 }

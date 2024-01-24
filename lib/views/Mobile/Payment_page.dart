@@ -308,7 +308,7 @@ class _Payment_pageState extends State<Payment_page> {
                                   String defaultEmailSubject =
                                       "Order on ${store.s9} ";
                                   String defaultEmailBody =
-                                      "Item Name: ${widget.item.itemName}\nCustomer Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email \nDiscription: $fromtext \n \nPayment:$selectedPayment\nQuantity:$quantity\nPurchase Mode: $purchasecontract \nProduct Link: $servalUrl en/product/ ${widget.item.itemId} \n \nConfrim order on Whatsapp: https://api.whatsapp.comsend?phone=+923339688283&text=hallo "; //\n i have order of Quantity:$quantity of  Item Name: ${widget.item.itemName}\n \nProduct Link:$servalUrl \nplease confrim with us :";
+                                      "Item Name: ${widget.item.itemName}\nCustomer Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email \nDiscription: $fromtext \n \nPayment:$selectedPayment\nQuantity:$quantity\nPurchase Mode: $purchasecontract \nProduct Link: $servalUrl en/product/ ${widget.item.itemId}";
 
                                   String emailLaunchUri =
                                       'mailto:$emailto ?subject=$defaultEmailSubject&body=$defaultEmailBody';
@@ -318,6 +318,7 @@ class _Payment_pageState extends State<Payment_page> {
                               },
                             ),
                             const Gutter(),
+                            Text(""),
                             ElevatedButton.icon(
                               style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
