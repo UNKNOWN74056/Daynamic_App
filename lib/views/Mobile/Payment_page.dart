@@ -136,7 +136,6 @@ class _Payment_pageState extends State<Payment_page> {
                                   hinttext: "Like +921234567...",
                                   errorttext: value.whatsapp.error,
                                 );
-                           
                               },
                             ),
                             const Gutter(),
@@ -308,8 +307,10 @@ class _Payment_pageState extends State<Payment_page> {
                                       isCashPayment ? "lease" : "Cash";
                                   String defaultEmailSubject =
                                       "Order on ${store.s9} ";
+                                  String commonttext = "Item Name: ${widget.item.itemName}\nCustomer Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email \nDiscription: $fromtext \n \nPayment:$selectedPayment\nQuantity:$quantity\nPurchase Mode: $purchasecontract \nProduct Link: $servalUrl\en/product/${widget.item.itemId}";
+                                  String result = whatsapp.substring(1);
                                   String defaultEmailBody =
-                                      "Item Name: ${widget.item.itemName}\nCustomer Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email \nDiscription: $fromtext \n \nPayment:$selectedPayment\nQuantity:$quantity\nPurchase Mode: $purchasecontract \nProduct Link: $servalUrl\en/product/${widget.item.itemId}";
+                                      " $commonttext \n \nConfirm order on Whatsapp (by ScreenShort) :https://wa.me/$result ";
 
                                   String emailLaunchUri =
                                       'mailto:$emailto ?subject=$defaultEmailSubject&body=$defaultEmailBody';
