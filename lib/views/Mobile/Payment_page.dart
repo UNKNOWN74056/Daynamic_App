@@ -136,6 +136,7 @@ class _Payment_pageState extends State<Payment_page> {
                                   hinttext: "Like +921234567...",
                                   errorttext: value.whatsapp.error,
                                 );
+                           
                               },
                             ),
                             const Gutter(),
@@ -308,7 +309,7 @@ class _Payment_pageState extends State<Payment_page> {
                                   String defaultEmailSubject =
                                       "Order on ${store.s9} ";
                                   String defaultEmailBody =
-                                      "Item Name: ${widget.item.itemName}\nCustomer Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email \nDiscription: $fromtext \n \nPayment:$selectedPayment\nQuantity:$quantity\nPurchase Mode: $purchasecontract \nProduct Link: $servalUrl en/product/ ${widget.item.itemId}";
+                                      "Item Name: ${widget.item.itemName}\nCustomer Name: $name\nAddress: $address\nWhatsApp: $whatsapp\nEmail: $email \nDiscription: $fromtext \n \nPayment:$selectedPayment\nQuantity:$quantity\nPurchase Mode: $purchasecontract \nProduct Link: $servalUrl\en/product/${widget.item.itemId}";
 
                                   String emailLaunchUri =
                                       'mailto:$emailto ?subject=$defaultEmailSubject&body=$defaultEmailBody';
@@ -318,7 +319,7 @@ class _Payment_pageState extends State<Payment_page> {
                               },
                             ),
                             const Gutter(),
-                            Text(""),
+                           
                             ElevatedButton.icon(
                               style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(

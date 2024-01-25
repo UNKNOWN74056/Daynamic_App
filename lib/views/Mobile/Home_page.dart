@@ -29,6 +29,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
+  
   const HomePage({
     super.key,
   });

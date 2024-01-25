@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class ItemSearchDelegate extends SearchDelegate<String> {
   final List<Items_data> itemList;
+  
 
   ItemSearchDelegate({
     required this.itemList,
@@ -91,5 +92,4 @@ class ItemSearchDelegate extends SearchDelegate<String> {
     },
   );
 }
-
-  }
+}
