@@ -3,7 +3,6 @@ import 'package:api_project/model/Cart_model.dart';
 import 'package:api_project/model/Items_model.dart';
 import 'package:api_project/model/Store_Model.dart';
 import 'package:api_project/provider/All_Deparments.dart';
-import 'package:api_project/provider/Cart_provider.dart';
 import 'package:api_project/utils/Constants.dart';
 import 'package:api_project/views/Mobile/Deatils_page.dart';
 import 'package:flutter/material.dart';
@@ -83,15 +82,6 @@ class _Category_details_pageState extends State<Category_details_page> {
                     child: ProductWidget(
                       ontap: () {
                         // Call the addToCart method from the CartProvider
-                        CartProvider cartProvider =
-                            context.read<CartProvider>();
-                        cartProvider.addToCart(CartItem(
-                          image: product.itemPhoto1 ?? "",
-                          productName: product.itemName ?? "",
-                          productPrice: product.itemPrice ?? "",
-                          quantity:
-                              1, // You can modify this based on your requirements
-                        ));
                       },
                       color: provider.getColorFromName(widget.store.s66 ?? ""),
                       discount: product.itemDiscount ?? "",

@@ -14,6 +14,7 @@ import 'package:api_project/model/Store_Model.dart';
 import 'package:api_project/provider/All_Deparments.dart';
 import 'package:api_project/services/Home_View_model.dart';
 import 'package:api_project/utils/Constants.dart';
+import 'package:api_project/utils/Responsive_layout.dart';
 import 'package:api_project/utils/RoutName.dart';
 import 'package:api_project/views/Mobile/Blog_Detail.dart';
 import 'package:api_project/views/Mobile/Category/Category_Detail_page.dart.dart';
@@ -383,7 +384,7 @@ class _HomePageState extends State<HomePage> {
                         ],
                       );
                     },
-                    itemCount: 20,
+                    itemCount: 6,
                     itemWidth: MediaQuery.of(context).size.width * 0.8,
                     layout: SwiperLayout.DEFAULT,
                     autoplay: true,

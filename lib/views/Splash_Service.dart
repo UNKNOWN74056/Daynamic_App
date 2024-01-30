@@ -12,7 +12,7 @@ class SplashServices {
     getUserData().then((value) {
       if (value != null) {
         Future.delayed(const Duration(seconds: 3), () {
-          Navigator.pushNamed(context, Routesname.Resposive_layout);
+          Navigator.pushNamed(context, Routesname.Home);
         });  
       }
     }).onError((error, stackTrace) {

@@ -1,4 +1,5 @@
 import 'package:api_project/components/Colors.dart';
+import 'package:api_project/components/CustomButton.dart';
 import 'package:api_project/model/Items_model.dart';
 import 'package:api_project/model/Store_Model.dart';
 import 'package:api_project/provider/All_Deparments.dart';
@@ -250,23 +251,41 @@ class _Details_pageState extends State<Details_page> {
             const Gutter(),
             //CASH ON DELIVERY SECTION
             Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Payment_page(item: widget.item)));
+              child: CustomOrderButton(
+                 onPressed: () {
+                 Navigator.push(
+                 context,
+                 MaterialPageRoute(
+                 builder: (context) => Payment_page(item: widget.item, store: widget.store),
+                 ),
+                );
                 },
-                style: ElevatedButton.styleFrom(
-                  // Set the width and height
-                  backgroundColor:
-                      provider.getColorFromName(widget.store.s66 ?? ""),
-                  foregroundColor: AppColors.white,
-                  minimumSize: const Size(300, 50),
-                ),
-                child: const Text("Order Now"),
-              ),
+                      buttonText: "Order Now",
+                      buttonColor: provider.getColorFromName(widget.store.s66 ?? ""),
+                      textColor: AppColors.white,
+                      ),
+
+              
+              // ElevatedButton(
+              //   onPressed: () {
+              //     Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //             builder: (context) =>
+              //                 Payment_page(item: widget.item, store: widget.store,)));
+              //   },
+              //   style: ElevatedButton.styleFrom(
+              //     // Set the width and height
+              //     backgroundColor:
+              //         provider.getColorFromName(widget.store.s66 ?? ""),
+              //     foregroundColor: AppColors.white,
+              //     minimumSize: const Size(300, 50),
+              //      shape: RoundedRectangleBorder(
+              //      borderRadius: BorderRadius.circular(12.0),
+              //      ),
+              //   ),
+              //   child: const Text("Order Now"),
+              // ),
             ),
 
             const Gutter(),

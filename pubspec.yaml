@@ -52,12 +52,19 @@ dependencies:
   cached_network_image: ^3.3.1
   flutter_launcher_icons: ^0.13.1
 
+# flutter_icons:
+#   android: true
+#   ios: true
+#   image_path: "assets/gamezoneicon.png"
+#   adaptive_icon_forground: "#ffffff"
+#   adaptive_icon_background: "assets/gamezoneicon.png"
+
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/amjeeicon.png"
+  image_path: "assets/dressericon.png"
   adaptive_icon_forground: "#ffffff"
-  adaptive_icon_background: "assets/amjeeicon.png"
+  adaptive_icon_background: "assets/dressericon.png"
 
 dev_dependencies:
   flutter_test:
